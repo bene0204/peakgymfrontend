@@ -1,0 +1,23 @@
+mat-toolbar {
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-container {
+    display: flex;
+  }
+  .nav-list {
+    display: flex;
+    padding: 0;
+
+    mat-icon {
+      margin-right: 5px;
+    }
+
+    mat-list-item {
+      margin: 0 10px;
+      color: white;
+    }
+  }
+}
+
+

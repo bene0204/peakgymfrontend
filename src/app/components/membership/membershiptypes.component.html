@@ -1,0 +1,27 @@
+<h1>Bérlet áraink</h1>
+
+<mat-table [dataSource]="membershipTypes" matSort class="membershiptype-list mat-elevation-z6">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Bérlet típus</mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">{{membershipType.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="price">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Ár (forint)</mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">{{membershipType.price}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="days">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Érvényesség (nap)</mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">{{membershipType.numberOfDays}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="occasion">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Alkalmak száma</mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">{{membershipType.numberOfOccasion}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let membershipType; columns: columnsToDisplay"></mat-row>
+
+</mat-table>

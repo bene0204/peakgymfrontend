@@ -1,0 +1,29 @@
+.membershiptype-list {
+  position: relative;
+  margin: 20px auto;
+  max-width: 1000px;
+  border-radius: 12px;
+
+
+  mat-header-cell {
+    font-weight: bolder;
+    font-size: 1.25rem;
+    border-bottom: 2px solid black;
+    justify-content: center;
+  }
+
+  mat-cell {
+    justify-content: center;
+  }
+
+  .mat-column-name {
+    border-right: 1px solid black;
+    justify-content: flex-end;
+    padding-right: 10px;
+    flex: 0 0 12%;
+  }
+
+  mat-row:hover {
+    background-color: whitesmoke;
+  }
+}
