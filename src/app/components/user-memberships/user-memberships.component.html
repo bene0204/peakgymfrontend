@@ -1,0 +1,22 @@
+<mat-table [dataSource]="memberships" class="user-memberships mat-elevation-z4">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>Bérlet típus</mat-header-cell>
+    <mat-cell *matCellDef="let membership">{{membership.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="endDate">
+    <mat-header-cell *matHeaderCellDef>Érvényes</mat-header-cell>
+    <mat-cell *matCellDef="let membership">{{membership.endDate}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="occasionsLeft">
+    <mat-header-cell *matHeaderCellDef>Hátralévő alkalmak</mat-header-cell>
+    <mat-cell *matCellDef="let membership">{{membership.occasionsLeft}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+  <mat-row *matRowDef="let membership; columns: columnsToDisplay"
+           [ngClass]="{'active' : isActive(membership) === 'ACTIVE', 'expired' : isActive(membership) === 'EXPIRED', 'expiring' : isActive(membership) === 'EXPIRING'}"></mat-row>
+</mat-table>
+
+<button mat-raised-button color="primary" (click)="getAllMembershipsByOwner()">Korábbi bérletek</button>

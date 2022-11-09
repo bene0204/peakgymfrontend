@@ -1,0 +1,56 @@
+@import "/src/variables";
+
+.user-info {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  max-width: 650px;
+
+  gap: 30px;
+
+  p {
+    margin: 0;
+    font-size: 2rem;
+  }
+  .name {
+    padding: 24px;
+    margin: 20px;
+    border-radius: 16px;
+    background: $primary;
+    width: fit-content;
+    height: fit-content;
+    color: white;
+  }
+
+  .balance {
+    padding: 24px;
+    margin: 20px;
+    border-radius: 16px;
+    max-width: 230px;
+    height: fit-content;
+    color: white;
+  }
+
+  .birth-date {
+    padding: 24px;
+    margin: 20px;
+    border-radius: 16px;
+    max-width: 230px;
+    height: fit-content;
+    color: black;
+  }
+
+  .negative {
+    background: #ff2c2c;
+  }
+
+  .positive {
+    background: green;
+  }
+
+}
+
+.management-section {
+  display: flex;
+}
+

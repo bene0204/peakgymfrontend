@@ -13,28 +13,47 @@ import {MembershiptypesComponent} from "./components/membership/membershiptypes.
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {LoginDialogComponent} from "./components/dialog/login-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {HasRoleDirective} from "./shared/directive/hasRole.directive";
+import {UserProfileComponent} from "./components/user-profile.component/user-profile.component";
+import {UserMembershipsComponent} from "./components/user-memberships/user-memberships.component";
+import {TokenInterceptor} from "./shared/interceptors/TokenInterceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    MembershiptypesComponent
+    MembershiptypesComponent,
+    LoginDialogComponent,
+    HasRoleDirective,
+    UserProfileComponent,
+    UserMembershipsComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    HttpClientModule
-  ],
-  providers: [],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTableModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        HttpClientModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule
+    ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

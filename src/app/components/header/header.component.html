@@ -1,15 +1,14 @@
-<header>
+<header class="mat-elevation-z4">
   <mat-toolbar color="primary">
     <div class="nav-container">
 
-    <button mat-icon-button>
+    <button mat-icon-button (click)="handleSideNav()">
       <mat-icon>menu</mat-icon>
     </button>
-
-<mat-nav-list class="nav-list">
-  <mat-list-item>
+<mat-nav-list class="nav-list" *ngIf="!handSet">
+  <mat-list-item routerLinkActive="active">
     <mat-icon>fitness_center</mat-icon>
-    <a routerLink="/membershiptypes" routerLinkActive="active" class="nav-element">Bérlet árak</a>
+    <a routerLink="/membershiptypes" class="nav-element">Bérlet árak</a>
   </mat-list-item>
   <mat-list-item>
     <mat-icon>image</mat-icon>
@@ -21,12 +20,16 @@
   </mat-list-item>
 
 </mat-nav-list>
+
     </div>
+
     <div class="login-container">
-      <button mat-raised-button>
-        <mat-icon>person</mat-icon>
-        Bejelentkezés
+      <p *ngIf="isLoggedIn && !handSet">{{user?.lastName}} {{user?.firstName}}</p>
+      <button mat-raised-button (click)="handleAuth()">
+        <mat-icon>{{!isLoggedIn ? "person" : "person_outline"}}</mat-icon>
+        {{!isLoggedIn ? "Bejelentkezés" : "Kijelentkezés"}}
       </button>
+
     </div>
   </mat-toolbar>
 </header>

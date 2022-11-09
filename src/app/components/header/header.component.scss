@@ -1,3 +1,4 @@
+
 mat-toolbar {
   justify-content: space-between;
   align-items: center;
@@ -16,6 +17,15 @@ mat-toolbar {
     mat-list-item {
       margin: 0 10px;
       color: white;
+      border-radius: 12px;
+    }
+  }
+  .login-container {
+    display: flex;
+    align-items: center;
+
+    p{
+      margin: 0 20px;
     }
   }
 }

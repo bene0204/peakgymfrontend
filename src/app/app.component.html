@@ -1,4 +1,46 @@
-<app-header></app-header>
-<main>
-  <router-outlet></router-outlet>
-</main>
+<mat-sidenav-container>
+  <mat-sidenav #sideNav position="start">
+    <div class="nav-container" (click)="handleSideNav(false)">
+      <div class="management-nav-list" *hasRole="['ADMIN', 'EMPLOYYE']">
+        <mat-nav-list>
+          <mat-list-item>
+            <a>Vendég keresése</a>
+          </mat-list-item>
+        </mat-nav-list>
+      </div>
+        <div class="basic-nav-list" *ngIf="user">
+          <mat-nav-list>
+            <mat-list-item routerLinkActive="active">
+              <a routerLink="/profile/me">Profil megtekintése</a>
+            </mat-list-item>
+          </mat-nav-list>
+
+        </div>
+
+      <div class="public-nav-list" *ngIf="handSet">
+      <mat-nav-list class="nav-list">
+        <mat-list-item routerLinkActive="active">
+          <mat-icon>fitness_center</mat-icon>
+          <a routerLink="/membershiptypes" class="nav-element">Bérlet árak</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>image</mat-icon>
+          <a class="nav-element">Galéria</a>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon>contact_mail</mat-icon>
+          <a class="nav-element">Kapcsolat</a>
+        </mat-list-item>
+
+      </mat-nav-list>
+      </div>
+    </div>
+</mat-sidenav>
+  <mat-sidenav-content>
+    <app-header (sidenavopen)="handleSideNav($event)"></app-header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

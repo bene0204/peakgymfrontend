@@ -1,0 +1,17 @@
+<div class="login-dialog">
+  <h1 mat-dialog-title>Bejelentkezés</h1>
+  <mat-dialog-content>
+    <form [formGroup]="loginForm">
+      <mat-form-field >
+        <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field >
+        <input matInput placeholder="Jelszó" type="password" formControlName="password">
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+<button mat-flat-button (click)="dialogref.close()">Mégse</button>
+    <button mat-flat-button color="primary" [disabled]="loginForm.invalid" (click)="loginUser()">Bejelentkezés</button>
+  </mat-dialog-actions>
+</div>

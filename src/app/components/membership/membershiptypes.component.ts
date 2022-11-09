@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {MembershiptypeEntity} from "../../shared/models/MembershiptypeEntity";
 import {HttpClient} from "@angular/common/http";
-import {MembershipTypeService} from "../../shared/service/MembershipTypeService";
+import {MembershipService} from "../../shared/service/MembershipService";
 import {finalize} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
@@ -20,7 +20,7 @@ export class MembershiptypesComponent implements OnInit{
 
   columnsToDisplay = ["name", "days", "occasion", "price"];
 
-  constructor(private membershipTypeService: MembershipTypeService) {
+  constructor(private membershipTypeService: MembershipService) {
   }
 
   ngOnInit() {
