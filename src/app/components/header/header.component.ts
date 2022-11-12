@@ -5,6 +5,8 @@ import {AuthService} from "../../shared/service/AuthService";
 import {UserEntity} from "../../shared/models/UserEntity";
 import {BreakpointService} from "../../shared/service/BreakpointService";
 import {Breakpoints} from "@angular/cdk/layout";
+import {Router} from "@angular/router";
+import {USER_ROLE} from "../../shared/enums/USER_ROLE";
 
 @Component({
   selector: "app-header",
@@ -20,7 +22,12 @@ export class HeaderComponent implements OnInit{
   handSet = false;
   @Output() sidenavopen = new EventEmitter<boolean>();
 
-  constructor(public dialog: MatDialog, private authService: AuthService, private breakPointService: BreakpointService) {
+  ManagementRoles = [USER_ROLE.EMPLOYEE, USER_ROLE.ADMIN];
+
+  constructor(public dialog: MatDialog,
+              private authService: AuthService,
+              private breakPointService: BreakpointService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -59,6 +66,7 @@ export class HeaderComponent implements OnInit{
     this.authService.user.next(null);
     this.isLoggedIn = false;
     localStorage.removeItem("jwtToken")
+    this.router.navigate([""]);
   }
 
   handleSideNav() {

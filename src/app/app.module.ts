@@ -24,6 +24,8 @@ import {HasRoleDirective} from "./shared/directive/hasRole.directive";
 import {UserProfileComponent} from "./components/user-profile.component/user-profile.component";
 import {UserMembershipsComponent} from "./components/user-memberships/user-memberships.component";
 import {TokenInterceptor} from "./shared/interceptors/TokenInterceptor";
+import {MatCardModule} from "@angular/material/card";
+import {HomeComponent} from "./components/home/home.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {TokenInterceptor} from "./shared/interceptors/TokenInterceptor";
     LoginDialogComponent,
     HasRoleDirective,
     UserProfileComponent,
-    UserMembershipsComponent
+    UserMembershipsComponent,
+    HomeComponent,
   ],
     imports: [
         BrowserModule,
@@ -51,7 +54,8 @@ import {TokenInterceptor} from "./shared/interceptors/TokenInterceptor";
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatSidenavModule
+        MatSidenavModule,
+        MatCardModule
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]

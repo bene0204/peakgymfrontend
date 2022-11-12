@@ -5,9 +5,6 @@ import {LoginResponse} from "../models/LoginResponse";
 import {BehaviorSubject} from "rxjs";
 import {UserEntity} from "../models/UserEntity";
 
-export interface JwtToken {
-  token: string
-}
 
 @Injectable({providedIn: "root"})
 export class AuthService {
@@ -21,4 +18,9 @@ export class AuthService {
   loginUser(userLogin: LoginDTO) {
     return this.http.post<LoginResponse>("http://localhost:8080/public/api/login", userLogin)
   }
+
+  autoLogin() {
+    return this.http.get<UserEntity>("http://localhost:8080/public/api/autologin")
+  }
+
 }

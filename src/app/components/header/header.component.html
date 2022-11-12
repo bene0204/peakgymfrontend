@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <div class="nav-container">
 
-    <button mat-icon-button (click)="handleSideNav()">
+    <button mat-icon-button (click)="handleSideNav()" *ngIf="handSet || user">
       <mat-icon>menu</mat-icon>
     </button>
 <mat-nav-list class="nav-list" *ngIf="!handSet">

@@ -1,20 +1,25 @@
-<section class="user-info">
-  <div class="name mat-elevation-z4">
-    <p>{{user!.lastName}} {{user!.firstName}}</p>
-  </div>
-  <div class="balance mat-elevation-z4" [ngClass]="{'positive' : user!.balance >= 0, 'negative' : user!.balance < 0}">
-    <p>Egyenleg: {{user!.balance}}</p>
-  </div>
-
-  <div class="birth-date mat-elevation-z4">
-    <p>Születési év: {{user!.birthDate}} </p>
-    <p>Kor: {{getYears}}</p>
-  </div>
+<section>
+  <mat-card class="user-info">
+    <mat-card-header>
+      <div class="name mat-elevation-z4">
+        <p>{{user!.lastName}} {{user!.firstName}}</p>
+      </div>
+    </mat-card-header>
+    <mat-card-subtitle>
+      <div class="balance mat-elevation-z4" [ngClass]="{'positive' : user!.balance >= 0, 'negative' : user!.balance < 0}">
+        <p>Egyenleg: {{user!.balance}}</p>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <div class="birth-date mat-elevation-z4">
+        <p>Születési év: {{user!.birthDate}} </p>
+        <p>Kor: {{getYears}}</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
 
 </section>
 <section class="management-section">
-
-
   <mat-list>
     <mat-list-item>
       <a (click)="navigateToMemberships()">{{user!.role === 'BASIC' ? 'Bérleteim' : 'Bérletek'}}</a>

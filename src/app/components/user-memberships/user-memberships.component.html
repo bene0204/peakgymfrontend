@@ -19,4 +19,4 @@
            [ngClass]="{'active' : isActive(membership) === 'ACTIVE', 'expired' : isActive(membership) === 'EXPIRED', 'expiring' : isActive(membership) === 'EXPIRING'}"></mat-row>
 </mat-table>
 
-<button mat-raised-button color="primary" (click)="getAllMembershipsByOwner()">Korábbi bérletek</button>
+<button class="prev-membership" mat-raised-button color="primary" (click)="getAllMembershipsByOwner()">Korábbi bérletek</button>

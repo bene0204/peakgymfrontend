@@ -18,7 +18,6 @@ export class UserProfileComponent implements OnInit{
     this.authService.user.subscribe({
       next: (user) => {
         this.user = user;
-
       }
     })
   }
@@ -29,10 +28,9 @@ export class UserProfileComponent implements OnInit{
 
     let years = today.getFullYear() - birthDate.getFullYear();
 
-    if (today.getMonth() <= birthDate.getMonth() && today.getDate() <= birthDate.getDate()) {
+    if (today.getMonth() < birthDate.getMonth() || today.getDate() < birthDate.getDate()) {
       years -= 1;
     }
-
     return years;
   }
 
