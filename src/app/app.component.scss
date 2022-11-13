@@ -1,7 +1,24 @@
-main {
-  height: 100vh;
+mat-sidenav-container {
+  background-color: lightgray;
+  mat-icon {
+    margin-right: 5px;
+  }
+  main {
+    height: 100vh;
+  }
+
+  .nav-container {
+    padding: 12px 24px;
+  }
+
+  h3 {
+    font-weight: bold;
+    border-radius: 12px;
+    box-shadow: 2px 2px 4px rgb(0,0,0,0.5);
+    background-color: lightgray;
+    padding: 10px;
+    margin: 0 auto;
+  }
 }
 
-.nav-container {
-  padding: 12px 24px;
-}
+

@@ -18,6 +18,9 @@ export class HasRoleDirective implements OnInit{
         if (user) {
           this.role = user.role;
           this.updateView();
+        } else {
+          this.role = "";
+          this.updateView();
         }
       }
     })

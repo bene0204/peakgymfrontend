@@ -12,8 +12,8 @@ export class MembershipService {
     return this.http.get<MembershiptypeEntity[]>("http://localhost:8080/public/api/membershiptype/list")
   }
 
-  getActiveMembershipsByOwner(userId: string) {
-    return this.http.get<Membership[]>(`http://localhost:8080/api/membership/active/${userId}`)
+  getRecentMembershipsByOwner(userId: string) {
+    return this.http.get<Membership[]>(`http://localhost:8080/api/membership/recent/${userId}`)
   }
 
   getAllMembershipsByOwner(userId: string) {

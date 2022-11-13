@@ -2,19 +2,35 @@
   <mat-sidenav #sideNav position="start">
     <div class="nav-container" (click)="handleSideNav(false)">
       <div class="management-nav-list" *hasRole="['ADMIN', 'EMPLOYYE']">
+        <h3>Menedzsment felületek</h3>
         <mat-nav-list>
           <mat-list-item>
+            <mat-icon>person_add</mat-icon>
+            <a>Új vendég rögzítése</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon>search</mat-icon>
             <a>Vendég keresése</a>
           </mat-list-item>
+          <mat-list-item>
+            <mat-icon> monetization_on</mat-icon>
+            <a>Bérletek kezelése</a>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon> monetization_on</mat-icon>
+            <a>Termékek kezelése</a>
+          </mat-list-item>
         </mat-nav-list>
+        <hr>
       </div>
         <div class="basic-nav-list" *ngIf="user">
+          <h3>Felhasználói felületek</h3>
           <mat-nav-list>
             <mat-list-item routerLinkActive="active">
               <a routerLink="/profile/me">Profil megtekintése</a>
             </mat-list-item>
           </mat-nav-list>
-
+<hr>
         </div>
 
       <div class="public-nav-list">
@@ -24,7 +40,7 @@
           <a routerLink="/membershiptypes" class="nav-element">Bérlet árak</a>
         </mat-list-item>
         <mat-list-item>
-          <mat-icon>image</mat-icon>
+          <mat-icon>photo_library</mat-icon>
           <a class="nav-element">Galéria</a>
         </mat-list-item>
         <mat-list-item>

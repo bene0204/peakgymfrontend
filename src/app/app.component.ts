@@ -25,12 +25,7 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.authService.autoLogin().subscribe({
-      next: (user) => {
-        this.authService.user.next(user);
-
-      }
-    })
+    this.autoLogin()
     this.authService.user.subscribe({
       next: (user) => {
         this.user = user;
@@ -47,6 +42,17 @@ export class AppComponent implements OnInit{
     })
   }
 
+  autoLogin() {
+    if (localStorage.getItem("jwtToken")) {
+      this.authService.autoLogin().subscribe({
+        next: (user) => {
+          this.authService.user.next(user);
+        }, error : (error) => {
+          this.authService.logout();
+        }
+      })
+    }
+  }
   handleSideNav(shouldOpen: boolean) {
     if (shouldOpen) {
       this.sideNav?.open();

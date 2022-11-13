@@ -36,6 +36,9 @@ export class HeaderComponent implements OnInit{
         if (user) {
           this.user = user;
           this.isLoggedIn = true;
+        } else {
+          this.user = null;
+          this.isLoggedIn = false;
         }
       }
     })
@@ -54,19 +57,12 @@ export class HeaderComponent implements OnInit{
     if (!this.isLoggedIn) {
       this.openLoginDialog();
     } else {
-      this.logout();
+      this.authService.logout();
     }
   }
 
   openLoginDialog() {
     this.dialogRef = this.dialog.open(LoginDialogComponent)
-  }
-
-  logout() {
-    this.authService.user.next(null);
-    this.isLoggedIn = false;
-    localStorage.removeItem("jwtToken")
-    this.router.navigate([""]);
   }
 
   handleSideNav() {

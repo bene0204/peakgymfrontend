@@ -44,7 +44,7 @@ init() {
     }
   })
 
-  this.memberhipService.getActiveMembershipsByOwner(this.userId!).subscribe({
+  this.memberhipService.getRecentMembershipsByOwner(this.userId!).subscribe({
     next: list => {
       this.memberships = new MatTableDataSource<Membership>(list)
     }

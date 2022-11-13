@@ -5,13 +5,13 @@
     <button mat-icon-button (click)="handleSideNav()" *ngIf="handSet || user">
       <mat-icon>menu</mat-icon>
     </button>
-<mat-nav-list class="nav-list" *ngIf="!handSet">
+<mat-nav-list class="nav-list" *ngIf="!handSet && (!user || !ManagementRoles.includes(user!.role))">
   <mat-list-item routerLinkActive="active">
     <mat-icon>fitness_center</mat-icon>
     <a routerLink="/membershiptypes" class="nav-element">Bérlet árak</a>
   </mat-list-item>
   <mat-list-item>
-    <mat-icon>image</mat-icon>
+    <mat-icon>photo_library</mat-icon>
     <a class="nav-element">Galéria</a>
   </mat-list-item>
   <mat-list-item>
