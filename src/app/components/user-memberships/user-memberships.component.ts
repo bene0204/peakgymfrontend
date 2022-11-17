@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {MatTableDataSource} from "@angular/material/table";
 import {Membership} from "../../shared/models/Membership";
 import {MembershipService} from "../../shared/service/MembershipService";
@@ -15,6 +15,8 @@ export class UserMembershipsComponent implements OnInit{
   userId?: string;
 
   memberships!: MatTableDataSource<Membership>;
+
+  isSellingMode = false;
 
   columnsToDisplay = ["name", "endDate", "occasionsLeft"];
 

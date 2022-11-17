@@ -1,5 +1,3 @@
-<h1>Bérlet áraink</h1>
-
 <mat-table [dataSource]="membershipTypes" matSort class="membershiptype-list mat-elevation-z6">
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef mat-sort-header>Bérlet típus</mat-header-cell>
@@ -22,6 +20,6 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-  <mat-row *matRowDef="let membershipType; columns: columnsToDisplay"></mat-row>
+  <mat-row *matRowDef="let membershipType; columns: columnsToDisplay" (dblclick)="addToCart(membershipType.membershipTypeId)"></mat-row>
 
 </mat-table>

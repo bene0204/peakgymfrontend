@@ -15,14 +15,36 @@
   color:white;
 }
 
-.user-memberships{
-  width: 1000px;
-  mat-cell{
-    color:inherit;
+.membership-route{
+  display: grid;
+  grid-template-areas: "pres sell";
+  grid-template-rows: 100%;
+  grid-template-columns: 4fr 3fr;
+  grid-column-gap: 20px;
+
+  .pres {
+    grid-area: pres;
+    .user-memberships{
+      width: 100%;
+      overflow-y: auto;
+      mat-cell{
+        color:inherit;
+      }
+    }
+
+    .action-bar {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+
+      .management-actions{
+
+      }
+    }
+  }
+  .sell {
+    grid-area: sell;
   }
 }
 
 
-.prev-membership {
-  margin-top: 20px;
-}

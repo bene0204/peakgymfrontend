@@ -9,6 +9,9 @@ mat-sidenav-container {
 
   .nav-container {
     padding: 12px 24px;
+    mat-list-item {
+      border-radius: 12px;
+    }
   }
 
   h3 {

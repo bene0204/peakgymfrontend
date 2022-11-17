@@ -1,10 +1,9 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
-import {MembershiptypeEntity} from "../../shared/models/MembershiptypeEntity";
-import {HttpClient} from "@angular/common/http";
-import {MembershipService} from "../../shared/service/MembershipService";
+import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {finalize} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
+import {MembershiptypeEntity} from "../../models/MembershiptypeEntity";
+import { MembershipService } from "../../service/MembershipService";
 
 @Component({
   selector: "app-membershiptypes",
@@ -13,6 +12,8 @@ import {MatSort} from "@angular/material/sort";
 })
 export class MembershiptypesComponent implements OnInit{
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
+
+  @Input() isSellingMode = false;
 
 
   membershipTypes!: MatTableDataSource<MembershiptypeEntity>;
@@ -39,5 +40,11 @@ export class MembershiptypesComponent implements OnInit{
         this.membershipTypes.sort = this.sort;
       }
     })
+  }
+
+  addToCart(membershipTypeId: string) {
+    if (this.isSellingMode) {
+      console.log(membershipTypeId);
+    }
   }
 }

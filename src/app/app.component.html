@@ -4,6 +4,7 @@
       <div class="management-nav-list" *hasRole="['ADMIN', 'EMPLOYYE']">
         <h3>Menedzsment felületek</h3>
         <mat-nav-list>
+
           <mat-list-item>
             <mat-icon>person_add</mat-icon>
             <a>Új vendég rögzítése</a>
@@ -26,6 +27,7 @@
         <div class="basic-nav-list" *ngIf="user">
           <h3>Felhasználói felületek</h3>
           <mat-nav-list>
+
             <mat-list-item routerLinkActive="active">
               <a routerLink="/profile/me">Profil megtekintése</a>
             </mat-list-item>

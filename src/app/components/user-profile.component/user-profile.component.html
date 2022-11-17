@@ -1,5 +1,6 @@
-<section>
-  <mat-card class="user-info">
+<div class="user-profile-wrapper">
+
+  <mat-card class="user-info mat-elevation-z6">
     <mat-card-header>
       <div class="name mat-elevation-z4">
         <p>{{user!.lastName}} {{user!.firstName}}</p>
@@ -12,25 +13,31 @@
     </mat-card-subtitle>
     <mat-card-content>
       <div class="birth-date mat-elevation-z4">
-        <p>Születési év: {{user!.birthDate}} </p>
+        <p>Születési év: {{user!.birthDate | date:'yyyy.MM.dd.'}} </p>
         <p>Kor: {{getYears}}</p>
       </div>
     </mat-card-content>
   </mat-card>
 
-</section>
-<section class="management-section">
+
+
+  <div class="action-bar">
   <mat-list>
-    <mat-list-item>
+    <mat-list-item class="nav-button">
       <a (click)="navigateToMemberships()">{{user!.role === 'BASIC' ? 'Bérleteim' : 'Bérletek'}}</a>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item class="nav-button">
       <a>{{user!.role === 'BASIC' ? 'Fogyasztásaim' : 'Büfé'}}</a>
     </mat-list-item>
+      <button mat-icon-button class="cart"><mat-icon>shopping_cart</mat-icon></button>
   </mat-list>
+    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="check-in" mat-raised-button>Beléptet</button>
+  </div>
+  <div class="router-content">
+    <router-outlet></router-outlet>
+  </div>
 
-<router-outlet></router-outlet>
-</section>
+</div>
 
 
 

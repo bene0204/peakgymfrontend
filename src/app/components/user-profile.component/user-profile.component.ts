@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {UserEntity} from "../../shared/models/UserEntity";
 import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
+import {UserService} from "../../shared/service/UserService";
 
 @Component({
   selector: "app-user-profile",
@@ -11,15 +12,16 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class UserProfileComponent implements OnInit{
   user!: UserEntity | null;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-    this.authService.user.subscribe({
-      next: (user) => {
-        this.user = user;
-      }
-    })
+    this.router.navigate(["memberships"], {relativeTo: this.route})
+
+    this.getUserProfile()
   }
 
   get getYears() {
@@ -32,6 +34,35 @@ export class UserProfileComponent implements OnInit{
       years -= 1;
     }
     return years;
+  }
+
+  getUserProfile() {
+    this.route.url.subscribe(url => {
+      for (const urlSegment of url) {
+        if (urlSegment.path === "me") {
+          this.authService.user.subscribe({
+            next: (user) => {
+              return this.user = user;
+            }
+          })
+        }
+      }
+      this.route.params.subscribe({
+        next: (params) => {
+          if (params["userId"]) {
+            this.getUserById(params["userId"]);
+          }
+        }
+      })
+    })
+  }
+
+  getUserById(userId: string) {
+    this.userService.getUserById(userId).subscribe({
+      next: (user) => {
+        return this.user = user;
+      }
+    })
   }
 
   navigateToMemberships() {

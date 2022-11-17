@@ -1,57 +1,115 @@
 @import "/src/variables";
+.user-profile-wrapper {
+  display: grid;
+  row-gap: 5px;
+  column-gap: 10px;
+  margin: 10px auto;
+  width: 90%;
+  grid-template-areas: "user-info action-bar"
+                        "user-info router";
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 350px 4fr;
 
-.user-info {
-  margin: 20px;
-  padding: 12px;
-  width: fit-content;
 
+  .user-info {
 
-
-  p {
-    margin: 0;
-    font-size: 2rem;
-  }
-  .name {
-    padding: 24px;
-    margin: 20px;
-    border-radius: 16px;
-    background: $primary;
+    padding: 12px;
     width: fit-content;
     height: fit-content;
-    color: white;
+    grid-area: user-info;
+    justify-items: center;
+
+    p {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .name {
+      padding: 24px;
+      margin: 20px;
+      border-radius: 16px;
+      background: $primary;
+      width: fit-content;
+      height: fit-content;
+      color: white;
+    }
+
+    .balance {
+      padding: 24px;
+      margin: 20px;
+      border-radius: 16px;
+      max-width: 230px;
+      height: fit-content;
+      color: white;
+    }
+
+    .birth-date {
+      padding: 24px;
+      margin: 20px;
+      border-radius: 16px;
+      max-width: 230px;
+      height: fit-content;
+      color: black;
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .negative {
+      background: #ff2c2c;
+    }
+
+    .positive {
+      background: green;
+    }
   }
 
-  .balance {
-    padding: 24px;
-    margin: 20px;
-    border-radius: 16px;
-    max-width: 230px;
-    height: fit-content;
-    color: white;
+    .action-bar{
+      grid-area: action-bar;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+      width: 100%;
+      mat-list {
+        mat-list-item.nav-button {
+          padding: 6px;
+          margin-right: 10px;
+          border-radius: 12px;
+          justify-content: flex-start;
+          background-color: #ffd15e;
+          width: fit-content;
+          display: inline-block;
+          cursor: pointer;
+          &:hover, &:focus {
+            background-color: #ffd137;
+          }
+        }
+        .cart {
+          display: inline-block;
+
+          &:hover, &:focus {
+            background-color: #ffd137;
+            color: white;
+          }
+        }
+      }
+
+      .check-in {
+        width: 200px;
+        height: 100%;
+        border-radius: 12px;
+        margin-right: 10px;
+        padding: 6px;
+        font-size: 2rem;
+        font-weight: bolder;
+      }
+    }
+
+  .router-content {
+    grid-area: router;
   }
 
-  .birth-date {
-    padding: 24px;
-    margin: 20px;
-    border-radius: 16px;
-    max-width: 230px;
-    height: fit-content;
-    color: black;
   }
-
-  .negative {
-    background: #ff2c2c;
-  }
-
-  .positive {
-    background: green;
-  }
-
-}
-
-.management-section {
-  display: flex;
-  justify-content: space-between;
-
-}
 
