@@ -20,6 +20,6 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-  <mat-row *matRowDef="let membershipType; columns: columnsToDisplay" (dblclick)="addToCart(membershipType.membershipTypeId)"></mat-row>
+  <mat-row *matRowDef="let membershipType; columns: columnsToDisplay" [ngClass]="{'clickable' : isSellingMode}" (dblclick)="addToCart(membershipType)"></mat-row>
 
 </mat-table>

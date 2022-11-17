@@ -20,32 +20,21 @@ export class UserMembershipsComponent implements OnInit{
 
   columnsToDisplay = ["name", "endDate", "occasionsLeft"];
 
-constructor(private memberhipService: MembershipService, private route: ActivatedRoute, private auth: AuthService) {
+constructor(private memberhipService: MembershipService,
+            private route: ActivatedRoute,
+            private auth: AuthService,
+            private authService: AuthService) {
 }
 
 ngOnInit() {
   this.init();
-
 }
 
 init() {
-  let authSub = this.auth.user.subscribe({
-    next: (user) => {
-      if (user) {
-        this.userId = user.userId;
-      }
-    }
-  })
+  this.getUserIdAndRecentMemberships()
+}
 
-  this.route.params.subscribe({
-    next: (params) => {
-      if (params['userId']) {
-        authSub.unsubscribe();
-        this.userId = params['userId'];
-      }
-    }
-  })
-
+getRecentMembershipsByOwner() {
   this.memberhipService.getRecentMembershipsByOwner(this.userId!).subscribe({
     next: list => {
       this.memberships = new MatTableDataSource<Membership>(list)
@@ -58,6 +47,29 @@ getAllMembershipsByOwner() {
     next: list => {
       this.memberships = new MatTableDataSource<Membership>(list);
     }
+  })
+}
+
+getUserIdAndRecentMemberships() {
+  this.route.parent!.url.subscribe(url => {
+    for (const urlSegment of url) {
+      if (urlSegment.path === "me") {
+        this.authService.user.subscribe({
+          next: (user) => {
+            this.userId = user?.userId;
+            return this.getRecentMembershipsByOwner();
+          }
+        })
+      }
+    }
+    this.route.parent!.params.subscribe({
+      next: (params) => {
+        if (params["userId"]) {
+          this.userId = params["userId"];
+          return this.getRecentMembershipsByOwner();
+        }
+      }
+    })
   })
 }
 

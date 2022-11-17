@@ -29,7 +29,7 @@
     <mat-list-item class="nav-button">
       <a>{{user!.role === 'BASIC' ? 'Fogyasztásaim' : 'Büfé'}}</a>
     </mat-list-item>
-      <button mat-icon-button class="cart"><mat-icon>shopping_cart</mat-icon></button>
+      <button mat-icon-button class="cart" *ngIf="cart.getCartItems().length > 0"><mat-icon>shopping_cart</mat-icon></button>
   </mat-list>
     <button *hasRole="['ADMIN', 'EMPLOYEE']" class="check-in" mat-raised-button>Beléptet</button>
   </div>

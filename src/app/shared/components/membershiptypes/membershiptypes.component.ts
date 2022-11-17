@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MembershiptypeEntity} from "../../models/MembershiptypeEntity";
 import { MembershipService } from "../../service/MembershipService";
+import {CartItem, CartService} from "../../service/CartService";
 
 @Component({
   selector: "app-membershiptypes",
@@ -21,7 +22,7 @@ export class MembershiptypesComponent implements OnInit{
 
   columnsToDisplay = ["name", "days", "occasion", "price"];
 
-  constructor(private membershipTypeService: MembershipService) {
+  constructor(private membershipTypeService: MembershipService, private cart: CartService) {
   }
 
   ngOnInit() {
@@ -42,9 +43,16 @@ export class MembershiptypesComponent implements OnInit{
     })
   }
 
-  addToCart(membershipTypeId: string) {
+  addToCart(membershipType: MembershiptypeEntity) {
     if (this.isSellingMode) {
-      console.log(membershipTypeId);
+      const cartItem: CartItem = {
+        id: membershipType.membershipTypeId,
+        name: membershipType.name,
+        quantity: 1,
+        price: membershipType.price
+      }
+      this.cart.addToCart(cartItem);
     }
+    console.log(this.cart.getCartItems());
   }
 }

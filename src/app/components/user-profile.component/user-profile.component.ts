@@ -3,6 +3,7 @@ import {UserEntity} from "../../shared/models/UserEntity";
 import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../shared/service/UserService";
+import {CartService} from "../../shared/service/CartService";
 
 @Component({
   selector: "app-user-profile",
@@ -15,13 +16,13 @@ export class UserProfileComponent implements OnInit{
   constructor(private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
-              private userService: UserService) {
+              private userService: UserService,
+              public cart: CartService) {
   }
 
   ngOnInit() {
-    this.router.navigate(["memberships"], {relativeTo: this.route})
-
     this.getUserProfile()
+    this.router.navigate(["memberships"], {relativeTo: this.route})
   }
 
   get getYears() {
@@ -64,6 +65,8 @@ export class UserProfileComponent implements OnInit{
       }
     })
   }
+
+
 
   navigateToMemberships() {
     this.router.navigate(['memberships'], {relativeTo: this.route})
