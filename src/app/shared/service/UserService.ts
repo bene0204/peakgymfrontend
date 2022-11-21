@@ -11,4 +11,13 @@ export class UserService {
     return this.httpClient.get<UserEntity>(`http://localhost:8080/management/api/user/${userId}`)
   }
 
+  findUsersByFirstAndLastName(firstName: string, lastName: string){
+    return this.httpClient.get<UserEntity[]>("http://localhost:8080/management/api/user/search", {
+      params: {
+        ["firstName"]: firstName,
+        ["lastName"]: lastName
+      }
+    })
+  }
+
 }

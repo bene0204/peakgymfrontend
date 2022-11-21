@@ -1,0 +1,50 @@
+.user-search-wrapper {
+  border-radius: 12px;
+  margin: 10px auto;
+  width: 80%;
+  padding: 10px;
+  background-color: white;
+
+  .search-form {
+    margin: 20px;
+
+    &>form {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+
+      mat-form-field{
+        width: 200px;
+        margin-top: 10px;
+        input {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .user-list {
+    width: 90%;
+    margin: 10px auto;
+    border: 1px solid black;
+    max-height: 1000px;
+    overflow-y: auto;
+
+    .mat-column-birthDate {
+      flex: 0 1 130px;
+    }
+
+    .mat-column-phoneNumber {
+      flex: 0 1 130px;
+    }
+    mat-cell {
+      font-size: 20px;
+    }
+
+    mat-row:hover {
+      background-color: whitesmoke;
+      cursor: pointer;
+    }
+  }
+
+}

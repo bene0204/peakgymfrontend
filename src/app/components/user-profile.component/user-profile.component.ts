@@ -11,17 +11,19 @@ import {CartService} from "../../shared/service/CartService";
   styleUrls: ["user-profile.component.scss"]
 })
 export class UserProfileComponent implements OnInit{
-  user!: UserEntity | null;
+  user?: UserEntity | null;
+  itemsInCartCount = 0;
 
   constructor(private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
-              public cart: CartService) {
+              private cart: CartService) {
   }
 
   ngOnInit() {
     this.getUserProfile()
+    this.subToCartItems()
     this.router.navigate(["memberships"], {relativeTo: this.route})
   }
 
@@ -66,7 +68,9 @@ export class UserProfileComponent implements OnInit{
     })
   }
 
-
+  subToCartItems() {
+    this.cart.cartItemsChange.subscribe(itemCount => this.itemsInCartCount=itemCount)
+  }
 
   navigateToMemberships() {
     this.router.navigate(['memberships'], {relativeTo: this.route})

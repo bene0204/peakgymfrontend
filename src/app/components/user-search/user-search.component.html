@@ -1,0 +1,37 @@
+<div class="user-search-wrapper mat-elevation-z6">
+  <div class="search-form">
+    <form [formGroup]="searchForm" (keydown)="findUsers()">
+      <mat-form-field appearance="fill" >
+        <input #lastNameInput matInput placeholder="Vezetéknév" formControlName="lastName">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <input matInput placeholder="Keresztnév" formControlName="firstName">
+      </mat-form-field>
+    </form>
+  </div>
+  <mat-table class="user-list" [dataSource]="dataSource">
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef>Vezetéknév</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.lastName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef>Keresztnév</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.firstName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef>Születési dátum</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.birthDate | date: 'yyyy.MM.dd.'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.email}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef>Telefonszám</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{user.phoneNumber}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row (dblclick)="navigateToProfile(user.userId)" *matRowDef="let user; columns: columnsToDisplay"></mat-row>
+  </mat-table>
+</div>

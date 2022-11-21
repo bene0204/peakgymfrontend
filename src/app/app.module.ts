@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +26,10 @@ import {UserMembershipsComponent} from "./components/user-memberships/user-membe
 import {TokenInterceptor} from "./shared/interceptors/TokenInterceptor";
 import {MatCardModule} from "@angular/material/card";
 import {HomeComponent} from "./components/home/home.component";
+import {UserSearchComponent} from "./components/user-search/user-search.component";
+import {DatePickerDialogComponent} from "./components/dialog/date-picker-dialog/date-picker-dialog.component";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -37,27 +41,32 @@ import {HomeComponent} from "./components/home/home.component";
     UserProfileComponent,
     UserMembershipsComponent,
     HomeComponent,
+    UserSearchComponent,
+    DatePickerDialogComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatListModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTableModule,
-        MatSortModule,
-        MatProgressSpinnerModule,
-        HttpClientModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatSidenavModule,
-        MatCardModule
-    ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+  ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

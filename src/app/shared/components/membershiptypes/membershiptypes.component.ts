@@ -4,7 +4,9 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
 import {MembershiptypeEntity} from "../../models/MembershiptypeEntity";
 import { MembershipService } from "../../service/MembershipService";
-import {CartItem, CartService} from "../../service/CartService";
+import {MembershipCartItem, CartService} from "../../service/CartService";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {DatePickerDialogComponent} from "../../../components/dialog/date-picker-dialog/date-picker-dialog.component";
 
 @Component({
   selector: "app-membershiptypes",
@@ -16,13 +18,14 @@ export class MembershiptypesComponent implements OnInit{
 
   @Input() isSellingMode = false;
 
-
+  dialogRef!: MatDialogRef<DatePickerDialogComponent>;
   membershipTypes!: MatTableDataSource<MembershiptypeEntity>;
   isTableLoading = false
 
   columnsToDisplay = ["name", "days", "occasion", "price"];
 
-  constructor(private membershipTypeService: MembershipService, private cart: CartService) {
+  constructor(private membershipTypeService: MembershipService, private cart: CartService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -45,14 +48,20 @@ export class MembershiptypesComponent implements OnInit{
 
   addToCart(membershipType: MembershiptypeEntity) {
     if (this.isSellingMode) {
-      const cartItem: CartItem = {
-        id: membershipType.membershipTypeId,
-        name: membershipType.name,
-        quantity: 1,
-        price: membershipType.price
-      }
-      this.cart.addToCart(cartItem);
+      this.dialogRef = this.dialog.open(DatePickerDialogComponent);
+      this.dialogRef.afterClosed()
+        .subscribe((date) => {
+          if(date) {
+            const cartItem: MembershipCartItem = {
+              id: membershipType.membershipTypeId,
+              name: membershipType.name,
+              startDate: new Date(date),
+              price: membershipType.price
+            }
+            this.cart.addToMemberhipCart(cartItem);
+            console.log(this.cart.getCartItems());
+          }
+      })
     }
-    console.log(this.cart.getCartItems());
   }
 }

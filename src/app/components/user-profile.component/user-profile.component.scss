@@ -7,7 +7,7 @@
   width: 90%;
   grid-template-areas: "user-info action-bar"
                         "user-info router";
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 100px 1fr;
   grid-template-columns: 350px 4fr;
 
 
@@ -86,13 +86,27 @@
             background-color: #ffd137;
           }
         }
-        .cart {
+        .cart-wrapper {
           display: inline-block;
-
-          &:hover, &:focus {
-            background-color: #ffd137;
+          position: relative;
+          .counter {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            background-color: $redish;
             color: white;
+            border-radius: 50%;
           }
+          .cart{
+            &:hover, &:focus {
+              background-color: #ffd137;
+              color: white;
+            }
+          }
+
         }
       }
 

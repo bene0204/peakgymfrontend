@@ -1,27 +1,37 @@
 import {Injectable} from "@angular/core";
+import {Subject} from "rxjs";
 
-export interface CartItem {
+export interface MembershipCartItem {
   id: string,
   name: string,
-  quantity: number,
+  startDate: Date;
   price: number;
 }
 
 @Injectable({providedIn: "root"})
 export class CartService {
 
-  private itemsInCart: CartItem[] = []
+  cartItemsChange = new Subject<number>();
 
-  addToCart(itemToAdd: CartItem) {
-    for (const item of this.itemsInCart) {
-      if(item.id === itemToAdd.id) {
-        return item.quantity += 1;
-      }
-    }
-    return this.itemsInCart.push(itemToAdd);
+  private itemsInMembershipCart: MembershipCartItem[] = []
+
+  addToMemberhipCart(itemToAdd: MembershipCartItem) {
+    // for (const item of this.itemsInMembershipCart) {
+    //   if(item.id === itemToAdd.id) {
+    //     return;
+    //   }
+    // }
+    this.itemsInMembershipCart.push(itemToAdd);
+    return this.cartItemsChange.next(this.itemsInMembershipCart.length);
+
+  }
+
+  removeFromMembershipCart(itemToRemove: MembershipCartItem) {
+
+    return this.cartItemsChange.next(this.itemsInMembershipCart.length);
   }
 
   getCartItems() {
-    return this.itemsInCart.slice();
+    return this.itemsInMembershipCart.slice();
   }
 }
