@@ -5,6 +5,7 @@ import {UserProfileComponent} from "./components/user-profile.component/user-pro
 import {UserMembershipsComponent} from "./components/user-memberships/user-memberships.component";
 import {HomeComponent} from "./components/home/home.component";
 import {UserSearchComponent} from "./components/user-search/user-search.component";
+import {UserProductsComponent} from "./components/user-products/user-products.component";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", component: HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
     ]},
   {path: "profile/:userId", component:UserProfileComponent,
     children: [
-      {path: "memberships", component: UserMembershipsComponent}
+      {path: "memberships", component: UserMembershipsComponent},
+      {path: "products", component: UserProductsComponent}
     ]},
   {path: "search", component: UserSearchComponent},
   {path: "**", redirectTo: ""}

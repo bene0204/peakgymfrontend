@@ -75,4 +75,12 @@ export class UserProfileComponent implements OnInit{
   navigateToMemberships() {
     this.router.navigate(['memberships'], {relativeTo: this.route})
   }
+
+  navigateToProducts() {
+    this.router.navigate(['products'], {relativeTo: this.route})
+  }
+
+  navigateToCart() {
+    console.log(this.cart.getCartItems());
+  }
 }

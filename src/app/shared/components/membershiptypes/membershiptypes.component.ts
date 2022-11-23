@@ -59,7 +59,6 @@ export class MembershiptypesComponent implements OnInit{
               price: membershipType.price
             }
             this.cart.addToMemberhipCart(cartItem);
-            console.log(this.cart.getCartItems());
           }
       })
     }

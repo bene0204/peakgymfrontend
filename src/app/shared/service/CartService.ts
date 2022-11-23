@@ -8,30 +8,51 @@ export interface MembershipCartItem {
   price: number;
 }
 
+export interface ProductCartItem {
+  id:string,
+  name:string,
+  quantity:number,
+  price:number
+}
+
 @Injectable({providedIn: "root"})
 export class CartService {
 
   cartItemsChange = new Subject<number>();
 
   private itemsInMembershipCart: MembershipCartItem[] = []
+  private itemsInProductCart: ProductCartItem[] = []
 
   addToMemberhipCart(itemToAdd: MembershipCartItem) {
-    // for (const item of this.itemsInMembershipCart) {
-    //   if(item.id === itemToAdd.id) {
-    //     return;
-    //   }
-    // }
     this.itemsInMembershipCart.push(itemToAdd);
-    return this.cartItemsChange.next(this.itemsInMembershipCart.length);
+    this.emitItemNumber();
+  }
 
+  addToProductCart(itemToAdd: ProductCartItem){
+    for (const item of this.itemsInProductCart) {
+      if(item.id === itemToAdd.id) {
+        item.quantity += itemToAdd.quantity;
+        item.price += itemToAdd.price;
+        return this.emitItemNumber();
+      }
+    }
+    this.itemsInProductCart.push(itemToAdd);
+    return this.emitItemNumber();
   }
 
   removeFromMembershipCart(itemToRemove: MembershipCartItem) {
 
-    return this.cartItemsChange.next(this.itemsInMembershipCart.length);
+    return this.emitItemNumber();
+  }
+
+  emitItemNumber() {
+    this.cartItemsChange.next(this.itemsInMembershipCart.length + this.itemsInProductCart.length);
   }
 
   getCartItems() {
-    return this.itemsInMembershipCart.slice();
+    return {
+      ["memberships"]: this.itemsInMembershipCart,
+      ["products"]: this.itemsInProductCart
+    };
   }
 }

@@ -30,6 +30,8 @@ import {UserSearchComponent} from "./components/user-search/user-search.componen
 import {DatePickerDialogComponent} from "./components/dialog/date-picker-dialog/date-picker-dialog.component";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import {UserProductsComponent} from "./components/user-products/user-products.component";
+import {ProductTypesComponent} from "./components/product-types/product-types.component";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {MatNativeDateModule} from "@angular/material/core";
     UserMembershipsComponent,
     HomeComponent,
     UserSearchComponent,
-    DatePickerDialogComponent
+    DatePickerDialogComponent,
+    UserProductsComponent,
+    ProductTypesComponent
   ],
   imports: [
     BrowserModule,
