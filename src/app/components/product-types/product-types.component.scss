@@ -1,5 +1,20 @@
+.product-search {
+  background-color: white;
+  padding: 12px;
+  font-size: 16px;
+  width: fit-content;
+
+  mat-form-field {
+    margin-right: 5px;
+  }
+
+  .search-icon:hover {
+    cursor: pointer;
+  }
+
+}
 mat-table {
-  mat-row:hover{
+  mat-row:hover {
     cursor: pointer;
     background-color: whitesmoke;
   }

@@ -1,0 +1,7 @@
+export enum PAYMENT_METHOD{
+  CASH ="KÉSZPÉNZ",
+
+  CARD = "BANKKÁRTYA",
+
+  SZEP_CARD = "SZÉP KÁRTYA"
+}

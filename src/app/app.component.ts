@@ -4,6 +4,8 @@ import {Breakpoints} from "@angular/cdk/layout";
 import {BreakpointService} from "./shared/service/BreakpointService";
 import {UserEntity} from "./shared/models/UserEntity";
 import {AuthService} from "./shared/service/AuthService";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {GuestFormComponent} from "./components/guest-form/guest-form.component";
 
 
 
@@ -17,11 +19,13 @@ export class AppComponent implements OnInit{
   title = 'peakgym';
   handSet = false
   user?: UserEntity | null;
+  dialogRef!: MatDialogRef<GuestFormComponent>;
 
   @ViewChild("sideNav") sideNav?: MatSidenav;
 
 
-  constructor(private breakPointService: BreakpointService, private authService: AuthService) {
+  constructor(private breakPointService: BreakpointService, private authService: AuthService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -59,5 +63,9 @@ export class AppComponent implements OnInit{
     } else {
       this.sideNav?.close();
     }
+  }
+
+  openGuestForm(){
+    this.dialogRef = this.dialog.open(GuestFormComponent);
   }
 }

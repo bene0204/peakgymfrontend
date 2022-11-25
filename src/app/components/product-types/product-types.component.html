@@ -15,11 +15,12 @@
   <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
   <mat-row (dblclick)="addToCart(productType)" *matRowDef="let productType; columns: columns"></mat-row>
 </mat-table>
-<form [formGroup]="searchForm">
+<form class="product-search" [formGroup]="searchForm">
   <mat-form-field>
     <input matInput type="number" formControlName="quantity" placeholder="Mennyiség">
   </mat-form-field>
   <mat-form-field>
     <input matInput type="text" formControlName="name" placeholder="Keresés név alapján">
+    <mat-icon class="search-icon" matSuffix (click)="searchByName()">search</mat-icon>
   </mat-form-field>
 </form>

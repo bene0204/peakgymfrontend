@@ -4,6 +4,8 @@ import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../shared/service/UserService";
 import {CartService} from "../../shared/service/CartService";
+import {MatDialog,  MatDialogRef} from "@angular/material/dialog";
+import {GuestFormComponent} from "../guest-form/guest-form.component";
 
 @Component({
   selector: "app-user-profile",
@@ -13,18 +15,20 @@ import {CartService} from "../../shared/service/CartService";
 export class UserProfileComponent implements OnInit{
   user?: UserEntity | null;
   itemsInCartCount = 0;
+  dialogRef!: MatDialogRef<GuestFormComponent>;
 
   constructor(private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
-              private cart: CartService) {
+              private cart: CartService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.getUserProfile()
     this.subToCartItems()
-    this.router.navigate(["memberships"], {relativeTo: this.route})
+    this.navigateToMemberships()
   }
 
   get getYears() {
@@ -68,6 +72,14 @@ export class UserProfileComponent implements OnInit{
     })
   }
 
+  updateUserInfo() {
+    this.dialogRef = this.dialog.open(GuestFormComponent, {data: this.user})
+      this.dialogRef.afterClosed()
+      .subscribe(() => {
+        this.getUserProfile()
+      })
+  }
+
   subToCartItems() {
     this.cart.cartItemsChange.subscribe(itemCount => this.itemsInCartCount=itemCount)
   }
@@ -81,6 +93,6 @@ export class UserProfileComponent implements OnInit{
   }
 
   navigateToCart() {
-    console.log(this.cart.getCartItems());
+    this.router.navigate(['cart'], {relativeTo: this.route});
   }
 }

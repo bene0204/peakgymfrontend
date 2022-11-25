@@ -8,7 +8,11 @@ export class ProductService{
   constructor(private http: HttpClient) {
   }
 
-  getProductTypes(){
-    return this.http.get<ProductType[]>("http://localhost:8080/management/api/producttype/list");
+  getProductTypes(name: string){
+    return this.http.get<ProductType[]>("http://localhost:8080/management/api/producttype/list", {
+      params: {
+        ["name"] : name,
+      }
+    });
   }
 }

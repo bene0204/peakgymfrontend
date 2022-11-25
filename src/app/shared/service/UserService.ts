@@ -20,4 +20,12 @@ export class UserService {
     })
   }
 
+  signUpUser(user: UserEntity){
+    return this.httpClient.post<UserEntity>("http://localhost:8080/management/api/user/signup", user)
+  }
+
+  updateUser(user: UserEntity, userId: string) {
+    return this.httpClient.patch<UserEntity>(`http://localhost:8080/management/api/user/${userId}/update`, user)
+  }
+
 }

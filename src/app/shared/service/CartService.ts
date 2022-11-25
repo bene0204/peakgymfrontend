@@ -15,6 +15,11 @@ export interface ProductCartItem {
   price:number
 }
 
+export interface CartItems {
+  memberships: MembershipCartItem[],
+  products: ProductCartItem[]
+}
+
 @Injectable({providedIn: "root"})
 export class CartService {
 
@@ -49,10 +54,10 @@ export class CartService {
     this.cartItemsChange.next(this.itemsInMembershipCart.length + this.itemsInProductCart.length);
   }
 
-  getCartItems() {
+  getCartItems(): CartItems {
     return {
-      ["memberships"]: this.itemsInMembershipCart,
-      ["products"]: this.itemsInProductCart
+      ["memberships"]: this.itemsInMembershipCart.slice(),
+      ["products"]: this.itemsInProductCart.slice()
     };
   }
 }

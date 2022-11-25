@@ -1,0 +1,42 @@
+<div class="guest-form-dialog">
+  <h1 mat-dialog-title>Vendég adatlap</h1>
+  <mat-dialog-content>
+    <form [formGroup]="userForm">
+      <div class="name">
+      <mat-form-field>
+        <input formControlName="lastName" matInput placeholder="Vezetéknév">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="firstName" matInput placeholder="Keresztnév">
+      </mat-form-field>
+      </div>
+      <mat-form-field class="birth-date">
+        <input matInput placeholder="Születési dátum" [matDatepicker]="birthDate" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="birthDate"></mat-datepicker-toggle>
+        <mat-datepicker #birthDate></mat-datepicker>
+      </mat-form-field>
+      <div class="contact">
+      <mat-form-field>
+        <input formControlName="email" matInput placeholder="E-mail">
+      </mat-form-field>
+      <mat-form-field>
+        <input formControlName="phoneNumber" matInput placeholder="Telefonszám">
+      </mat-form-field>
+      </div>
+      <div *hasRole="['ADMIN']" class="admin-only">
+      <mat-form-field>
+        <input type="number" step="100" formControlName="balance" matInput placeholder="Egyenleg">
+      </mat-form-field>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let option of options"
+                    [value]="option.value">
+          {{option.viewValue}}</mat-option>
+      </mat-select>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="cancel()">Mégse</button>
+    <button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="handleSave()">Mentés</button>
+  </mat-dialog-actions>
+</div>

@@ -1,6 +1,9 @@
 <div class="user-profile-wrapper">
 
   <mat-card class="user-info mat-elevation-z6" *ngIf="user">
+    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="update-button" mat-icon-button (click)="updateUserInfo()">
+      <mat-icon>edit</mat-icon>
+    </button>
     <mat-card-header>
       <div class="name mat-elevation-z4">
         <p>{{user.lastName}} {{user.firstName}}</p>

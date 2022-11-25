@@ -9,7 +9,6 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {MembershiptypesComponent} from "./shared/components/membershiptypes/membershiptypes.component";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
@@ -32,6 +31,10 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
 import {UserProductsComponent} from "./components/user-products/user-products.component";
 import {ProductTypesComponent} from "./components/product-types/product-types.component";
+import {GuestFormComponent} from "./components/guest-form/guest-form.component";
+import {MatSelectModule} from "@angular/material/select";
+import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
+import {CartComponent} from "./components/cart/cart.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +49,9 @@ import {ProductTypesComponent} from "./components/product-types/product-types.co
     UserSearchComponent,
     DatePickerDialogComponent,
     UserProductsComponent,
-    ProductTypesComponent
+    ProductTypesComponent,
+    GuestFormComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import {ProductTypesComponent} from "./components/product-types/product-types.co
     MatSidenavModule,
     MatCardModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],

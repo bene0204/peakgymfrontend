@@ -1,0 +1,51 @@
+<div class="cart-tables">
+  <mat-table *ngIf="cartItems.memberships.length > 0" [dataSource]="memberships" class="membership-table">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Bérlet típus</mat-header-cell>
+      <mat-cell *matCellDef="let membership">{{membership.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <mat-header-cell *matHeaderCellDef>Kezdő dátum</mat-header-cell>
+      <mat-cell *matCellDef="let membership">{{membership.startDate | date: 'yyyy.MM.dd.'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Ár</mat-header-cell>
+      <mat-cell *matCellDef="let membership">{{membership.price}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell (click)="deleteMembership(membership.id)" *matCellDef="let membership"><mat-icon>delete</mat-icon></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="membershipColumns"></mat-header-row>
+    <mat-row *matRowDef="let membership; columns: membershipColumns"></mat-row>
+  </mat-table>
+
+  <mat-table *ngIf="cartItems.products.length > 0" [dataSource]="products" class="product-table">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Termék</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell *matHeaderCellDef>Mennyiség</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.quantity}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef>Ár</mat-header-cell>
+      <mat-cell *matCellDef="let product">{{product.price}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell (click)="deleteProduct(product.id)" *matCellDef="let product"><mat-icon>delete</mat-icon></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="productColumns"></mat-header-row>
+    <mat-row *matRowDef="let product; columns: productColumns"></mat-row>
+  </mat-table>
+</div>
+<div class="action-bar">
+  <button mat-raised-button>Készpénz</button>
+  <button mat-raised-button>Bankkártya</button>
+  <button mat-raised-button>SZÉP kártya</button>
+</div>

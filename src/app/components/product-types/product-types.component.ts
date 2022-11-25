@@ -38,11 +38,11 @@ export class ProductTypesComponent implements OnInit{
   initDataSource() {
     this.sort.active = "name"
     this.sort.direction = "asc"
-    this.getProducts()
+    this.getProducts("")
   }
 
-  getProducts() {
-    this.productService.getProductTypes().subscribe((products) => {
+  getProducts(name: string) {
+    this.productService.getProductTypes(name).subscribe((products) => {
       this.dataSource = new MatTableDataSource<ProductType>(products);
       this.dataSource.sort = this.sort;
     })
@@ -56,5 +56,9 @@ export class ProductTypesComponent implements OnInit{
       price: this.searchForm.value['quantity']*product.price
     }
     this.cart.addToProductCart(itemToAdd);
+  }
+
+  searchByName() {
+    this.getProducts(this.searchForm.value["name"]);
   }
 }

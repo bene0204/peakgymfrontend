@@ -1,0 +1,44 @@
+.guest-form-dialog {
+
+  form {
+    padding: 18px;
+    display: grid;
+    grid-template-areas: "name"
+                        "birthDate"
+                        "contact"
+                        "admin-only";
+
+    .name {
+      grid-area: name;
+      mat-form-field{
+        margin-right: 5px;
+      }
+    }
+
+    .birth-date {
+      grid-area: birthDate;
+    }
+
+    .contact {
+      grid-area: contact;
+      mat-form-field{
+        margin-right: 5px;
+      }
+    }
+
+    .admin-only {
+      grid-area: admin-only;
+      mat-select {
+        width: 50%;
+        margin-left: 5px;
+      }
+    }
+  }
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-right: 10px;
+    }
+  }
+}

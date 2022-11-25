@@ -1,0 +1,14 @@
+.cart-tables {
+  display: flex;
+
+  .membership-table {
+    width: 45%;
+    margin-right: 20px;
+    height: fit-content;
+  }
+
+  .product-table {
+    width: 45%;
+    height: fit-content;
+  }
+}

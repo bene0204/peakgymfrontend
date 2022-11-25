@@ -18,7 +18,16 @@
     height: fit-content;
     grid-area: user-info;
     justify-items: center;
+    position: relative;
 
+    .update-button{
+      position: absolute;
+      top: 5px;
+      left: 10px;
+      &:hover {
+        background-color: whitesmoke;
+      }
+    }
     p {
       margin: 0;
       font-size: 2rem;

@@ -2,11 +2,11 @@ import {Component, Input, OnInit, ViewChild} from "@angular/core";
 import {finalize} from "rxjs";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatSort} from "@angular/material/sort";
-import {MembershiptypeEntity} from "../../models/MembershiptypeEntity";
-import { MembershipService } from "../../service/MembershipService";
-import {MembershipCartItem, CartService} from "../../service/CartService";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {DatePickerDialogComponent} from "../../../components/dialog/date-picker-dialog/date-picker-dialog.component";
+import {MembershiptypeEntity} from "../../shared/models/MembershiptypeEntity";
+import {DatePickerDialogComponent} from "../dialog/date-picker-dialog/date-picker-dialog.component";
+import {CartService, MembershipCartItem} from "../../shared/service/CartService";
+import {MembershipService} from "../../shared/service/MembershipService";
 
 @Component({
   selector: "app-membershiptypes",
