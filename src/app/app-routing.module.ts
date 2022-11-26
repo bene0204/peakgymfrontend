@@ -7,6 +7,7 @@ import {UserSearchComponent} from "./components/user-search/user-search.componen
 import {UserProductsComponent} from "./components/user-products/user-products.component";
 import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
 import {CartComponent} from "./components/cart/cart.component";
+import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: "products", component: UserProductsComponent},
       {path: "cart", component: CartComponent}
     ]},
+  {path: "membership-management", component: MembershipManagementComponent},
   {path: "search", component: UserSearchComponent},
   {path: "**", redirectTo: ""}
 

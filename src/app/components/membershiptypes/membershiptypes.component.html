@@ -19,6 +19,25 @@
     <mat-cell *matCellDef="let membershipType">{{membershipType.numberOfOccasion}}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">
+      <button (click)="editMembership(membershipType.membershipTypeId)" mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let membershipType">
+      <button (click)="deleteMembership(membershipType.membershipTypeId)" mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+
   <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
   <mat-row *matRowDef="let membershipType; columns: columnsToDisplay" [ngClass]="{'clickable' : isSellingMode}" (dblclick)="addToCart(membershipType)"></mat-row>
 

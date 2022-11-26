@@ -30,12 +30,31 @@
     max-height: 1000px;
     overflow-y: auto;
 
+    .mat-column-lastName {
+      flex: 0 1 15%;
+      justify-content: center;
+    }
+
+    .mat-column-firstName {
+      flex: 0 1 15%;
+      justify-content: center;
+    }
+
+    .mat-column-email {
+      justify-content: center;
+    }
+
     .mat-column-birthDate {
-      flex: 0 1 130px;
+      flex: 0 1 15%;
+      justify-content: center;
     }
 
     .mat-column-phoneNumber {
-      flex: 0 1 130px;
+      flex: 0 1 15%;
+      justify-content: center;
+    }
+    mat-header-cell {
+      border-bottom: 1px solid black;
     }
     mat-cell {
       font-size: 20px;

@@ -23,6 +23,27 @@
     flex: 0 0 12%;
   }
 
+  .mat-column-edit{
+    flex: 0 0 40px;
+    justify-content: center;
+
+    button:hover {
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+
+  .mat-column-delete {
+    padding: 0;
+    flex: 0 0 40px;
+    justify-content: center;
+
+  button:hover{
+    background-color: white;
+    cursor: pointer;
+  }
+  }
+
   mat-row:hover {
     background-color: whitesmoke;
   }

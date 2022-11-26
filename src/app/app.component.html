@@ -5,19 +5,19 @@
         <h3>Menedzsment felületek</h3>
         <mat-nav-list>
 
-          <mat-list-item>
+          <mat-list-item (click)="openGuestForm()">
             <mat-icon>person_add</mat-icon>
-            <a (click)="openGuestForm()">Új vendég rögzítése</a>
+            <a>Új vendég rögzítése</a>
           </mat-list-item>
-          <mat-list-item routerLinkActive="active">
+          <mat-list-item routerLink="/search" routerLinkActive="active">
             <mat-icon>search</mat-icon>
-            <a routerLink="/search">Vendég keresése</a>
+            <a>Vendég keresése</a>
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item routerLink="/membership-management" routerLinkActive="active">
             <mat-icon> monetization_on</mat-icon>
             <a>Bérletek kezelése</a>
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item routerLink="/product-management" routerLinkActive="active">
             <mat-icon> monetization_on</mat-icon>
             <a>Termékek kezelése</a>
           </mat-list-item>
@@ -28,8 +28,8 @@
           <h3>Felhasználói felületek</h3>
           <mat-nav-list>
 
-            <mat-list-item routerLinkActive="active">
-              <a routerLink="/profile/me">Profil megtekintése</a>
+            <mat-list-item routerLink="/profile/me" routerLinkActive="active">
+              <a>Profil megtekintése</a>
             </mat-list-item>
           </mat-nav-list>
 <hr>

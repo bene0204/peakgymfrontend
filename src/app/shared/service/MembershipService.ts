@@ -19,4 +19,8 @@ export class MembershipService {
   getAllMembershipsByOwner(userId: string) {
     return this.http.get<Membership[]>(`http://localhost:8080/api/membership/all/${userId}`)
   }
+
+  deleteMembership(membershipId: string){
+    return this.http.delete(`http://localhost:8080/admin/api/membershiptype/delete/${membershipId}`)
+  }
 }

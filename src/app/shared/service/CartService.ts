@@ -1,5 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Subject} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 export interface MembershipCartItem {
   id: string,
@@ -28,6 +29,9 @@ export class CartService {
   private itemsInMembershipCart: MembershipCartItem[] = []
   private itemsInProductCart: ProductCartItem[] = []
 
+  constructor(private http: HttpClient) {
+  }
+
   addToMemberhipCart(itemToAdd: MembershipCartItem) {
     this.itemsInMembershipCart.push(itemToAdd);
     this.emitItemNumber();
@@ -45,9 +49,16 @@ export class CartService {
     return this.emitItemNumber();
   }
 
-  removeFromMembershipCart(itemToRemove: MembershipCartItem) {
+  removeFromMembershipCart(id: string) {
+    const filteredList = this.itemsInMembershipCart.filter(membership =>  membership.id != id)
+    this.itemsInMembershipCart = [...filteredList];
+    this.emitItemNumber();
+  }
 
-    return this.emitItemNumber();
+  removeFromProductCart(id: string) {
+    const filteredList = this.itemsInProductCart.filter(product => product.id != id)
+    this.itemsInProductCart = [...filteredList]
+    this.emitItemNumber()
   }
 
   emitItemNumber() {
@@ -59,5 +70,38 @@ export class CartService {
       ["memberships"]: this.itemsInMembershipCart.slice(),
       ["products"]: this.itemsInProductCart.slice()
     };
+  }
+
+  sellMemberships(userId: string, paymentMethod: string) {
+    const body = this.itemsInMembershipCart.map(membership => {
+      return {
+        typeId: membership.id,
+        startDate: membership.startDate,
+        paymentMethod: paymentMethod
+      }
+    })
+    this.http.post(`http://localhost:8080/management/api/membership/sell/${userId}`, body).subscribe({
+      next: () => {
+        this.itemsInMembershipCart = []
+        this.emitItemNumber()
+      }
+    })
+
+  }
+
+  sellProducts(userId: string, paymentMethod: string) {
+    const body = this.itemsInProductCart.map(product => {
+      return {
+        typeId: product.id,
+        quantity: product.quantity,
+        paymentMethod: paymentMethod
+      }
+    })
+    this.http.post(`http://localhost:8080/management/api/product/sell/${userId}`, body).subscribe({
+      next: () => {
+        this.itemsInProductCart = []
+        this.emitItemNumber()
+      }
+    })
   }
 }

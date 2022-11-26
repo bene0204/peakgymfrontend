@@ -35,6 +35,7 @@ import {GuestFormComponent} from "./components/guest-form/guest-form.component";
 import {MatSelectModule} from "@angular/material/select";
 import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
 import {CartComponent} from "./components/cart/cart.component";
+import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import {CartComponent} from "./components/cart/cart.component";
     UserProductsComponent,
     ProductTypesComponent,
     GuestFormComponent,
-    CartComponent
+    CartComponent,
+    MembershipManagementComponent
   ],
   imports: [
     BrowserModule,

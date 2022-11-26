@@ -26,11 +26,11 @@
 
   <div class="action-bar">
   <mat-list>
-    <mat-list-item class="nav-button">
-      <a (click)="navigateToMemberships()">Bérletek</a>
+    <mat-list-item (click)="navigateToMemberships()" class="nav-button">
+      <a>Bérletek</a>
     </mat-list-item>
-    <mat-list-item class="nav-button">
-      <a (click)="navigateToProducts()">Büfé</a>
+    <mat-list-item (click)="navigateToProducts()" class="nav-button">
+      <a>Büfé</a>
     </mat-list-item>
     <div class="cart-wrapper" *ngIf="itemsInCartCount > 0">
       <button (click)="navigateToCart()" mat-icon-button class="cart"><mat-icon>shopping_cart</mat-icon></button>

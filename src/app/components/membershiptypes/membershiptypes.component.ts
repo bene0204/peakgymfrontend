@@ -17,6 +17,7 @@ export class MembershiptypesComponent implements OnInit{
   @ViewChild(MatSort, { static: true }) sort!: MatSort;
 
   @Input() isSellingMode = false;
+  @Input() isManagementPage = false;
 
   dialogRef!: MatDialogRef<DatePickerDialogComponent>;
   membershipTypes!: MatTableDataSource<MembershiptypeEntity>;
@@ -24,7 +25,9 @@ export class MembershiptypesComponent implements OnInit{
 
   columnsToDisplay = ["name", "days", "occasion", "price"];
 
-  constructor(private membershipTypeService: MembershipService, private cart: CartService,
+
+
+  constructor(private membershipService: MembershipService, private cart: CartService,
               public dialog: MatDialog) {
   }
 
@@ -36,14 +39,21 @@ export class MembershiptypesComponent implements OnInit{
     this.sort.active = "price"
     this.sort.direction = "asc"
     this.isTableLoading = true;
-    this.membershipTypeService.getMembershipTypes()
+    if(this.isManagementPage) {
+      this.columnsToDisplay = [...this.columnsToDisplay, "edit", "delete"];
+    }
+    this.getMembershipTypes();
+  }
+
+  getMembershipTypes() {
+    this.membershipService.getMembershipTypes()
       .pipe(finalize(() => this.isTableLoading = false))
       .subscribe({
-      next: list => {
-        this.membershipTypes = new MatTableDataSource<MembershiptypeEntity>(list)
-        this.membershipTypes.sort = this.sort;
-      }
-    })
+        next: list => {
+          this.membershipTypes = new MatTableDataSource<MembershiptypeEntity>(list)
+          this.membershipTypes.sort = this.sort;
+        }
+      })
   }
 
   addToCart(membershipType: MembershiptypeEntity) {
@@ -62,5 +72,17 @@ export class MembershiptypesComponent implements OnInit{
           }
       })
     }
+  }
+
+  editMembership(id: string) {
+    console.log("edit" + id)
+  }
+
+  deleteMembership(id: string) {
+    this.membershipService.deleteMembership(id).subscribe({
+      next: () => {
+        this.getMembershipTypes();
+      }
+    })
   }
 }
