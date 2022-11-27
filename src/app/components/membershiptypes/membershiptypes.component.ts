@@ -7,6 +7,8 @@ import {MembershiptypeEntity} from "../../shared/models/MembershiptypeEntity";
 import {DatePickerDialogComponent} from "../dialog/date-picker-dialog/date-picker-dialog.component";
 import {CartService, MembershipCartItem} from "../../shared/service/CartService";
 import {MembershipService} from "../../shared/service/MembershipService";
+import {ConfirmDialogComponent} from "../dialog/confirm-dialog/confirm-dialog.component";
+import {MembershipFormComponent} from "../membership-form/membership-form.component";
 
 @Component({
   selector: "app-membershiptypes",
@@ -19,7 +21,9 @@ export class MembershiptypesComponent implements OnInit{
   @Input() isSellingMode = false;
   @Input() isManagementPage = false;
 
-  dialogRef!: MatDialogRef<DatePickerDialogComponent>;
+  pickerDialogRef!: MatDialogRef<DatePickerDialogComponent>;
+  confirmDialogRef!: MatDialogRef<ConfirmDialogComponent>;
+  membershipDialogRef!: MatDialogRef<MembershipFormComponent>
   membershipTypes!: MatTableDataSource<MembershiptypeEntity>;
   isTableLoading = false
 
@@ -58,12 +62,12 @@ export class MembershiptypesComponent implements OnInit{
 
   addToCart(membershipType: MembershiptypeEntity) {
     if (this.isSellingMode) {
-      this.dialogRef = this.dialog.open(DatePickerDialogComponent);
-      this.dialogRef.afterClosed()
+      this.pickerDialogRef = this.dialog.open(DatePickerDialogComponent);
+      this.pickerDialogRef.afterClosed()
         .subscribe((date) => {
           if(date) {
             const cartItem: MembershipCartItem = {
-              id: membershipType.membershipTypeId,
+              id: membershipType.membershipTypeId!,
               name: membershipType.name,
               startDate: new Date(date),
               price: membershipType.price
@@ -74,15 +78,24 @@ export class MembershiptypesComponent implements OnInit{
     }
   }
 
-  editMembership(id: string) {
-    console.log("edit" + id)
+  editMembership(membership: MembershiptypeEntity) {
+    this.membershipDialogRef = this.dialog.open(MembershipFormComponent, {data: membership});
+    this.membershipDialogRef.afterClosed().subscribe(() => {
+      this.getMembershipTypes();
+    })
   }
 
   deleteMembership(id: string) {
-    this.membershipService.deleteMembership(id).subscribe({
-      next: () => {
-        this.getMembershipTypes();
+    this.confirmDialogRef = this.dialog.open(ConfirmDialogComponent);
+    this.confirmDialogRef.afterClosed().subscribe((confirm) => {
+      if (confirm) {
+        this.membershipService.deleteMembership(id).subscribe({
+          next: () => {
+            this.getMembershipTypes();
+          }
+        })
       }
     })
+
   }
 }

@@ -1,0 +1,9 @@
+<div class="product-management">
+<button (click)="newProduct()" class="new-product" mat-raised-button color="primary">
+  <mat-icon>
+    add
+  </mat-icon>
+  Új termék hozzáadása
+</button>
+<app-product-types [isSellingMode]="false" [isManagementPage]="true"></app-product-types>
+</div>

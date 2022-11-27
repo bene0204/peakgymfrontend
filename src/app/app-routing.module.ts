@@ -8,6 +8,7 @@ import {UserProductsComponent} from "./components/user-products/user-products.co
 import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
+import {ProductManagementComponent} from "./components/product-management/product-management.component";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", component: HomeComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: "cart", component: CartComponent}
     ]},
   {path: "membership-management", component: MembershipManagementComponent},
+  {path: "product-management", component: ProductManagementComponent},
   {path: "search", component: UserSearchComponent},
   {path: "**", redirectTo: ""}
 

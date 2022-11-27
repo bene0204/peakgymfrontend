@@ -1,0 +1,13 @@
+<div>
+  <mat-dialog-content>
+    Biztosan törölni szeretnéd?
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button (click)="dialogRef.close(false)" mat-raised-button>
+      Nem
+    </button>
+    <button (click)="dialogRef.close(true)" color="warn" mat-raised-button>
+      Igen
+    </button>
+  </mat-dialog-actions>
+</div>

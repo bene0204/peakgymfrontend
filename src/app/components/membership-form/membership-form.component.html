@@ -1,0 +1,29 @@
+<div class="membership-form">
+  <h1 mat-dialog-title>Bérlet adatlap</h1>
+  <mat-dialog-content>
+    <form [formGroup]="membershipForm">
+      <mat-form-field>
+        <input placeholder="Bérlet típus neve" matInput formControlName="name">
+      </mat-form-field>
+      <div class="days">
+      <mat-form-field>
+        <input type="number" step="5" placeholder="Napok száma" matInput formControlName="numberOfDays">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="number" placeholder="Alkalmak száma" matInput formControlName="numberOfOccasion">
+      </mat-form-field>
+      </div>
+      <mat-form-field>
+        <input type="number" step="500" placeholder="Ár" matInput formControlName="price">
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="dialogRef.close()">
+      Mégse
+    </button>
+    <button (click)="handleSave()" mat-raised-button color="primary">
+      Mentés
+    </button>
+  </mat-dialog-actions>
+</div>

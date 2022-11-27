@@ -20,6 +20,14 @@ export class MembershipService {
     return this.http.get<Membership[]>(`http://localhost:8080/api/membership/all/${userId}`)
   }
 
+  saveMembership(body: MembershiptypeEntity) {
+    return this.http.post<MembershiptypeEntity>("http://localhost:8080/admin/api/membershiptype/add", body)
+  }
+
+  updateMembership(id: string, body: MembershiptypeEntity) {
+    return this.http.patch<MembershiptypeEntity>(`http://localhost:8080/admin/api/membershiptype/modify/${id}`, body)
+  }
+
   deleteMembership(membershipId: string){
     return this.http.delete(`http://localhost:8080/admin/api/membershiptype/delete/${membershipId}`)
   }

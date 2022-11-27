@@ -36,6 +36,10 @@ import {MatSelectModule} from "@angular/material/select";
 import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
+import {ConfirmDialogComponent} from "./components/dialog/confirm-dialog/confirm-dialog.component";
+import {MembershipFormComponent} from "./components/membership-form/membership-form.component";
+import {ProductManagementComponent} from "./components/product-management/product-management.component";
+import {ProductFormComponent} from "./components/product-form/product-form.component";
 
 @NgModule({
   declarations: [
@@ -53,7 +57,11 @@ import {MembershipManagementComponent} from "./components/membership-management/
     ProductTypesComponent,
     GuestFormComponent,
     CartComponent,
-    MembershipManagementComponent
+    MembershipManagementComponent,
+    ConfirmDialogComponent,
+    MembershipFormComponent,
+    ProductManagementComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

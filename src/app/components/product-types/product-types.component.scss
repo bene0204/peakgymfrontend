@@ -1,3 +1,5 @@
+@import "src/variables";
+
 .product-search {
   background-color: white;
   padding: 12px;
@@ -14,8 +16,33 @@
 
 }
 mat-table {
+  max-height: 1000px;
+  .mat-column-edit{
+    flex: 0 0 40px;
+    justify-content: center;
+
+    button:hover {
+      background-color: $primary;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  .mat-column-delete {
+    padding: 0;
+    flex: 0 0 40px;
+    justify-content: center;
+
+    button:hover{
+      background-color: $redish;
+      color:white;
+      cursor: pointer;
+    }
+  }
   mat-row:hover {
-    cursor: pointer;
     background-color: whitesmoke;
+  }
+  mat-row.clickable:hover {
+    cursor: pointer;
   }
 }

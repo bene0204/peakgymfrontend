@@ -15,4 +15,8 @@ export class ProductService{
       }
     });
   }
+
+  deleteProduct(typeId: string) {
+    return this.http.delete(`http://localhost:8080/admin/api/producttype/delete/${typeId}`);
+  }
 }

@@ -12,11 +12,29 @@
     <mat-cell *matCellDef="let productType">{{productType.price}}</mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="edit">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let productType">
+      <button (click)="editProduct(productType)" mat-icon-button>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let productType">
+      <button (click)="deleteProduct(productType.productTypeId)" mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-  <mat-row (dblclick)="addToCart(productType)" *matRowDef="let productType; columns: columns"></mat-row>
+  <mat-row (dblclick)="addToCart(productType)" *matRowDef="let productType; columns: columns" [ngClass]="{'clickable' : isSellingMode}"></mat-row>
 </mat-table>
 <form class="product-search" [formGroup]="searchForm">
-  <mat-form-field>
+  <mat-form-field *ngIf="isSellingMode">
     <input matInput type="number" formControlName="quantity" placeholder="Mennyiség">
   </mat-form-field>
   <mat-form-field>

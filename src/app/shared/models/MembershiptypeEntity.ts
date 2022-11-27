@@ -1,5 +1,5 @@
 export interface MembershiptypeEntity {
-  membershipTypeId: string,
+  membershipTypeId?: string,
   name: string
   price: number,
   numberOfDays: number,
