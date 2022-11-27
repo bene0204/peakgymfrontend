@@ -16,6 +16,14 @@ export class ProductService{
     });
   }
 
+  saveProduct(body: ProductType) {
+    return this.http.post<ProductType>("http://localhost:8080/admin/api/producttype/add", body);
+  }
+
+  updateProduct(typeId: string, body: ProductType) {
+    return this.http.patch<ProductType>(`http://localhost:8080/admin/api/producttype/update/${typeId}`, body);
+  }
+
   deleteProduct(typeId: string) {
     return this.http.delete(`http://localhost:8080/admin/api/producttype/delete/${typeId}`);
   }

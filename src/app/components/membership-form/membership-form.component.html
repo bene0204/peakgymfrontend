@@ -22,7 +22,7 @@
     <button mat-raised-button (click)="dialogRef.close()">
       Mégse
     </button>
-    <button (click)="handleSave()" mat-raised-button color="primary">
+    <button [disabled]="membershipForm.invalid" (click)="handleSave()" mat-raised-button color="primary">
       Mentés
     </button>
   </mat-dialog-actions>

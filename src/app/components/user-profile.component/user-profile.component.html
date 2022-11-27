@@ -1,7 +1,10 @@
 <div class="user-profile-wrapper">
 
   <mat-card class="user-info mat-elevation-z6" *ngIf="user">
-    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="update-button" mat-icon-button (click)="updateUserInfo()">
+    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="update-button" mat-icon-button (click)="updateUserInfo()"
+            matTooltip="Vendég adatainak módosítása" matTooltipPosition="right"
+            matTooltipShowDelay="200"
+            matTooltipHideDelay="200">
       <mat-icon>edit</mat-icon>
     </button>
     <mat-card-header>

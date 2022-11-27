@@ -7,6 +7,7 @@ import {MatSort} from "@angular/material/sort";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ConfirmDialogComponent} from "../dialog/confirm-dialog/confirm-dialog.component";
+import {ProductFormComponent} from "../product-form/product-form.component";
 
 @Component({
   selector: "app-product-types",
@@ -26,6 +27,7 @@ export class ProductTypesComponent implements OnInit{
 
   searchForm!: FormGroup;
   confirmDialogRef!: MatDialogRef<ConfirmDialogComponent>;
+  productFormDialogRef!: MatDialogRef<ProductFormComponent>;
 
   constructor(private productService: ProductService,
               private cart: CartService,
@@ -75,7 +77,10 @@ export class ProductTypesComponent implements OnInit{
   }
 
   editProduct(product: ProductType) {
-
+    this.productFormDialogRef = this.dialog.open(ProductFormComponent, {data: product});
+    this.productFormDialogRef.afterClosed().subscribe(() => {
+      this.getProducts("");
+    })
   }
 
   deleteProduct(id: string) {

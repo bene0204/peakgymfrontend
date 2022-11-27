@@ -40,6 +40,7 @@ import {ConfirmDialogComponent} from "./components/dialog/confirm-dialog/confirm
 import {MembershipFormComponent} from "./components/membership-form/membership-form.component";
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
 import {ProductFormComponent} from "./components/product-form/product-form.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -63,28 +64,29 @@ import {ProductFormComponent} from "./components/product-form/product-form.compo
     ProductManagementComponent,
     ProductFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    MatProgressSpinnerModule,
-    HttpClientModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSelectModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatListModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTableModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        HttpClientModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatSidenavModule,
+        MatCardModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatSelectModule,
+        MatTooltipModule
+    ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
   ],
   bootstrap: [AppComponent]

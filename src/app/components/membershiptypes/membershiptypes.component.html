@@ -22,7 +22,10 @@
   <ng-container matColumnDef="edit">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let membershipType">
-      <button (click)="editMembership(membershipType)" mat-icon-button>
+      <button (click)="editMembership(membershipType)" mat-icon-button
+              matTooltip="Bérlet módosítása" matTooltipPosition="left"
+              matTooltipShowDelay="200"
+              matTooltipHideDelay="200">
         <mat-icon>edit</mat-icon>
       </button>
     </mat-cell>
@@ -31,7 +34,11 @@
   <ng-container matColumnDef="delete">
     <mat-header-cell *matHeaderCellDef></mat-header-cell>
     <mat-cell *matCellDef="let membershipType">
-      <button (click)="deleteMembership(membershipType.membershipTypeId)" mat-icon-button>
+      <button (click)="deleteMembership(membershipType.membershipTypeId)" mat-icon-button
+              matTooltip="Bérlet törlése"
+              matTooltipPosition="right"
+              matTooltipShowDelay="200"
+              matTooltipHideDelay="200">
         <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>

@@ -1,23 +1,25 @@
-<div class="membership-form">
-  <h1 mat-dialog-title>Bérlet adatlap</h1>
+<div class="product-form">
+  <h1 mat-dialog-title>Termék adatlap</h1>
   <mat-dialog-content>
     <form [formGroup]="productForm">
       <mat-form-field>
         <input placeholder="Termék neve" matInput formControlName="name">
       </mat-form-field>
+      <div class="second-row">
         <mat-form-field>
           <input type="number" placeholder="Mennyiség" matInput formControlName="quantity">
         </mat-form-field>
       <mat-form-field>
         <input type="number" step="500" placeholder="Ár" matInput formControlName="price">
       </mat-form-field>
+      </div>
     </form>
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-raised-button (click)="dialogRef.close()">
       Mégse
     </button>
-    <button (click)="handleSave()" mat-raised-button color="primary">
+    <button [disabled]="productForm.invalid" (click)="handleSave()" mat-raised-button color="primary">
       Mentés
     </button>
   </mat-dialog-actions>

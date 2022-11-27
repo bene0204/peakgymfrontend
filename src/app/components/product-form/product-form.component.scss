@@ -1,0 +1,14 @@
+form {
+  display: flex;
+  flex-direction: column;
+
+  .second-row {
+    display: flex;
+    gap: 10px;
+
+  }
+}
+
+mat-dialog-actions {
+  justify-content: flex-end;
+}
