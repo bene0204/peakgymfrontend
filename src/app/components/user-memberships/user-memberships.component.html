@@ -2,7 +2,7 @@
 
 
 <div class="pres">
-  <mat-table [dataSource]="memberships" class="user-memberships mat-elevation-z4">
+  <mat-table [dataSource]="dataSource" class="user-memberships mat-elevation-z4">
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef>Bérlet típus</mat-header-cell>
       <mat-cell *matCellDef="let membership">{{membership.name}}</mat-cell>
@@ -20,7 +20,10 @@
 
     <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
     <mat-row *matRowDef="let membership; columns: columnsToDisplay"
-             [ngClass]="{'active' : isActive(membership) === 'ACTIVE', 'expired' : isActive(membership) === 'EXPIRED', 'expiring' : isActive(membership) === 'EXPIRING'}"></mat-row>
+             [ngClass]="{'active' : isActive(membership) === 'ACTIVE',
+             'expired' : isActive(membership) === 'EXPIRED',
+             'expiring' : isActive(membership) === 'EXPIRING',
+             'not-yet-active' : isActive(membership) === 'NOT_YET_ACTIVE'}"></mat-row>
   </mat-table>
   <div class="action-bar">
     <button class="prev-membership" mat-raised-button color="primary" (click)="getAllMembershipsByOwner()">Korábbi bérletek</button>

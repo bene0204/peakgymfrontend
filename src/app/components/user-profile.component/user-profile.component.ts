@@ -4,8 +4,12 @@ import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../shared/service/UserService";
 import {CartService} from "../../shared/service/CartService";
-import {MatDialog,  MatDialogRef} from "@angular/material/dialog";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {GuestFormComponent} from "../guest-form/guest-form.component";
+import {Membership} from "../../shared/models/Membership";
+import {MembershipService} from "../../shared/service/MembershipService";
+import {MembershipStatus} from "../../shared/enums/MembershipStatus";
+import {KeysDialogComponent} from "../dialog/keys-dialog/keys-dialog.component";
 
 @Component({
   selector: "app-user-profile",
@@ -15,20 +19,26 @@ import {GuestFormComponent} from "../guest-form/guest-form.component";
 export class UserProfileComponent implements OnInit{
   user?: UserEntity | null;
   itemsInCartCount = 0;
-  dialogRef!: MatDialogRef<GuestFormComponent>;
+  guestFormComponentMatDialogRef!: MatDialogRef<GuestFormComponent>;
+  keysDialogRef!: MatDialogRef<KeysDialogComponent>
+  recentMemberships: Membership[] = [];
+  isAnyActive = false;
+  activeMemberships: Membership[] = [];
 
   constructor(private authService: AuthService,
               private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
               private cart: CartService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private membershipService: MembershipService) {
   }
 
   ngOnInit() {
     this.getUserProfile()
     this.subToCartItems()
     this.navigateToMemberships()
+    this.subToRecentMemberships()
   }
 
   get getYears() {
@@ -73,8 +83,8 @@ export class UserProfileComponent implements OnInit{
   }
 
   updateUserInfo() {
-    this.dialogRef = this.dialog.open(GuestFormComponent, {data: this.user})
-      this.dialogRef.afterClosed()
+    this.guestFormComponentMatDialogRef = this.dialog.open(GuestFormComponent, {data: this.user})
+      this.guestFormComponentMatDialogRef.afterClosed()
       .subscribe(() => {
         this.getUserProfile()
       })
@@ -82,6 +92,23 @@ export class UserProfileComponent implements OnInit{
 
   subToCartItems() {
     this.cart.cartItemsChange.subscribe(itemCount => this.itemsInCartCount=itemCount)
+  }
+
+  subToRecentMemberships() {
+    this.membershipService.recentMemberships.subscribe((memberships) => {
+      this.recentMemberships = memberships;
+      this.isAnyActive = this.areMembershipsActive();
+    })
+  }
+
+  checkInUser() {
+    this.keysDialogRef = this.dialog.open(KeysDialogComponent)
+  }
+
+  areMembershipsActive() {
+    this.activeMemberships = this.recentMemberships.filter(membership =>
+      this.membershipService.isActive(membership) === MembershipStatus.ACTIVE);
+      return this.activeMemberships.length > 0;
   }
 
   navigateToMemberships() {

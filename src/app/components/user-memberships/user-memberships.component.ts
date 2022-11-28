@@ -1,10 +1,11 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {MatTableDataSource} from "@angular/material/table";
 import {Membership} from "../../shared/models/Membership";
 import {MembershipService} from "../../shared/service/MembershipService";
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "../../shared/service/AuthService";
 import {MembershipStatus} from "../../shared/enums/MembershipStatus";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-user-memberships',
@@ -14,11 +15,14 @@ import {MembershipStatus} from "../../shared/enums/MembershipStatus";
 export class UserMembershipsComponent implements OnInit{
   userId?: string;
 
-  memberships!: MatTableDataSource<Membership>;
-
+  dataSource!: MatTableDataSource<Membership>;
+  memberships: Membership[] = []
   isSellingMode = false;
 
   columnsToDisplay = ["name", "endDate", "occasionsLeft"];
+
+
+
 
 constructor(private memberhipService: MembershipService,
             private route: ActivatedRoute,
@@ -37,7 +41,9 @@ init() {
 getRecentMembershipsByOwner() {
   this.memberhipService.getRecentMembershipsByOwner(this.userId!).subscribe({
     next: list => {
-      this.memberships = new MatTableDataSource<Membership>(list)
+      this.memberships = list;
+      this.dataSource = new MatTableDataSource<Membership>(this.memberships)
+      this.memberhipService.emitRecentMemberships(this.memberships);
     }
   })
 }
@@ -45,7 +51,9 @@ getRecentMembershipsByOwner() {
 getAllMembershipsByOwner() {
   this.memberhipService.getAllMembershipsByOwner(this.userId!).subscribe({
     next: list => {
-      this.memberships = new MatTableDataSource<Membership>(list);
+      this.memberships = list
+      this.dataSource = new MatTableDataSource<Membership>(this.memberships);
+      this.memberhipService.emitRecentMemberships(this.memberships);
     }
   })
 }
@@ -73,20 +81,7 @@ getUserIdAndRecentMemberships() {
   })
 }
 
-isActive(memberhip: Membership) {
-  const endDate = new Date(memberhip.endDate)
-  endDate.setHours(0);
-  const todayFull = new Date();
-  const today = new Date(todayFull.getFullYear(), todayFull.getMonth(), todayFull.getDate())
-
-  if(endDate < today) return MembershipStatus.EXPIRED;
-  endDate.setDate(endDate.getDate() - 2)
-  if(endDate <= today) {
-    return MembershipStatus.EXPIRING;
-  }
-
-  return MembershipStatus.ACTIVE;
-
-
+isActive(membership: Membership) {
+  return this.memberhipService.isActive(membership);
 }
 }

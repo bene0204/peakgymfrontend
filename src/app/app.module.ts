@@ -41,6 +41,7 @@ import {MembershipFormComponent} from "./components/membership-form/membership-f
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
 import {ProductFormComponent} from "./components/product-form/product-form.component";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {KeysDialogComponent} from "./components/dialog/keys-dialog/keys-dialog.component";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     ConfirmDialogComponent,
     MembershipFormComponent,
     ProductManagementComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    KeysDialogComponent
   ],
     imports: [
         BrowserModule,

@@ -41,7 +41,9 @@
     </div>
 
   </mat-list>
-    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="check-in" mat-raised-button>Beléptet</button>
+    <ng-container *ngIf="isAnyActive">
+    <button *hasRole="['ADMIN', 'EMPLOYEE']" class="check-in" mat-raised-button (click)="checkInUser()">Beléptet</button>
+    </ng-container>
   </div>
   <div class="router-content">
     <router-outlet></router-outlet>
