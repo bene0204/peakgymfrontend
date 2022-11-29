@@ -23,8 +23,8 @@
 
     </div>
 
-    <mat-form-field appearance="outline">
-      <input matInput placeholder="Kulcs száma" formControlName="key">
+    <mat-form-field *hasRole="['ADMIN', 'EMPLOYEE']" appearance="outline">
+      <input matInput placeholder="Kulcs száma" [value]="key.value.toUpperCase()" [formControl]="key">
       <button (click)="searchForUserByKey()" matSuffix mat-icon-button><mat-icon>search</mat-icon></button>
     </mat-form-field>
 

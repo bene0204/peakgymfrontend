@@ -7,9 +7,8 @@ import {BreakpointService} from "../../shared/service/BreakpointService";
 import {Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {USER_ROLE} from "../../shared/enums/USER_ROLE";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {KeyService} from "../../shared/service/KeyService";
-import {MatFormFieldControl} from "@angular/material/form-field";
 
 @Component({
   selector: "app-header",
@@ -57,7 +56,8 @@ export class HeaderComponent implements OnInit{
         }
       }
     })
-    this.key = this.fb.control('', Validators.required)
+    this.key = this.fb.control('')
+
   }
 
   handleAuth() {
@@ -74,8 +74,10 @@ export class HeaderComponent implements OnInit{
 
   searchForUserByKey() {
     if(this.key.valid) {
-      this.keyService.getUserByKey(this.key.value).subscribe((userId) => {
-        this.router.navigate(["profile", userId])
+
+      this.keyService.getUserByKey(this.key.value).subscribe((response) => {
+        this.key.reset('');
+        this.router.navigate(["profile", response.userId, "memberships"])
       })
     }
   }

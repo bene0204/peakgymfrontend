@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {UserEntity} from "../../shared/models/UserEntity";
 import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -11,7 +11,6 @@ import {MembershipService} from "../../shared/service/MembershipService";
 import {MembershipStatus} from "../../shared/enums/MembershipStatus";
 import {KeysDialogComponent} from "../dialog/keys-dialog/keys-dialog.component";
 import {KeyService} from "../../shared/service/KeyService";
-import {UserMembershipsComponent} from "../user-memberships/user-memberships.component";
 
 @Component({
   selector: "app-user-profile",
@@ -82,6 +81,7 @@ export class UserProfileComponent implements OnInit{
   getUserById(userId: string) {
     this.userService.getUserById(userId).subscribe({
       next: (user) => {
+        this.getUserKey()
         return this.user = user;
       }
     })
@@ -124,7 +124,6 @@ export class UserProfileComponent implements OnInit{
           })
         }
       })
-
     } else {
       this.keyService.checkOutUser(this.userKey).subscribe(() => {
         this.userKey = undefined;

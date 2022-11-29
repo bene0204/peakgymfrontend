@@ -20,6 +20,6 @@ export class KeyService {
   }
 
   getUserByKey(key:string) {
-    return this.http.get<string>(`http://localhost:8080/management/api/keys/${key}`)
+    return this.http.get<{userId : string }>(`http://localhost:8080/management/api/keys/${key}`)
   }
 }
