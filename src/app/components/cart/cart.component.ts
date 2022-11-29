@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {MatTableDataSource} from "@angular/material/table";
 import {CartItems, CartService, MembershipCartItem, ProductCartItem} from "../../shared/service/CartService";
 import {ActivatedRoute, Router} from "@angular/router";
+import {MembershipService} from "../../shared/service/MembershipService";
 
 @Component({
   selector: "app-cart",
@@ -17,7 +18,10 @@ export class CartComponent implements OnInit{
   productColumns = ["name", "quantity", "price", "delete"];
   membershipColumns = ["name", "startDate", "price", "delete"]
 
-  constructor(private cart: CartService, private route: ActivatedRoute, private router: Router) {
+  constructor(private cart: CartService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private membershipService: MembershipService) {
   }
 
   ngOnInit() {

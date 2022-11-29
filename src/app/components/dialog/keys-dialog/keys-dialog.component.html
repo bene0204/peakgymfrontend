@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<mat-select mat-dialog-title [formControl]="sex">
+  <mat-option *ngFor="let type of options" [value]="type.value">
+    {{type.viewValue}}
+  </mat-option>
+</mat-select>
+<mat-dialog-content>
+<div class="key-container">
+  <div *ngFor="let key of keysToDisplay" class="key-wrapper">
+    <button *ngIf="!key.userId"
+            [ngClass]="{'male-key' : sex.value === 'male',
+    'female-key' : sex.value === 'female' }"
+            (click)="dialogRef.close(key.key)"
+    >{{key.key}}</button>
+  </div>
+</div>
+</mat-dialog-content>

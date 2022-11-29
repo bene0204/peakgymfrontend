@@ -9,6 +9,7 @@ import {BehaviorSubject, Subject} from "rxjs";
 export class MembershipService {
   memberships: Membership[] = [];
   recentMemberships = new BehaviorSubject<Membership[]>(this.memberships)
+  rerunRecentMemberships = new Subject<boolean>();
   constructor(private http: HttpClient) {
   }
 
@@ -44,7 +45,7 @@ export class MembershipService {
     const todayFull = new Date();
     const today = new Date(todayFull.getFullYear(), todayFull.getMonth(), todayFull.getDate())
 
-    if(endDate < today || membership.occasionsLeft || membership.occasionsLeft === 0) return MembershipStatus.EXPIRED;
+    if(endDate < today || membership.occasionsLeft === 0) return MembershipStatus.EXPIRED;
     endDate.setDate(endDate.getDate() - 2)
     if(endDate <= today) {
       return MembershipStatus.EXPIRING;
@@ -58,5 +59,9 @@ export class MembershipService {
   emitRecentMemberships(memberships: Membership[]){
     this.memberships = memberships
     this.recentMemberships.next(this.memberships);
+  }
+
+  rerun(){
+    this.rerunRecentMemberships.next(true);
   }
 }

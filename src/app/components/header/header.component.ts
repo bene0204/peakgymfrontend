@@ -7,6 +7,9 @@ import {BreakpointService} from "../../shared/service/BreakpointService";
 import {Breakpoints} from "@angular/cdk/layout";
 import {Router} from "@angular/router";
 import {USER_ROLE} from "../../shared/enums/USER_ROLE";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {KeyService} from "../../shared/service/KeyService";
+import {MatFormFieldControl} from "@angular/material/form-field";
 
 @Component({
   selector: "app-header",
@@ -20,6 +23,7 @@ export class HeaderComponent implements OnInit{
   user?: UserEntity | null;
   isSideNavOpen = false;
   handSet = false;
+  key!: FormControl
   @Output() sidenavopen = new EventEmitter<boolean>();
 
   ManagementRoles = [USER_ROLE.EMPLOYEE, USER_ROLE.ADMIN];
@@ -27,7 +31,9 @@ export class HeaderComponent implements OnInit{
   constructor(public dialog: MatDialog,
               private authService: AuthService,
               private breakPointService: BreakpointService,
-              private router: Router) {
+              private router: Router,
+              private fb: FormBuilder,
+              private keyService: KeyService) {
   }
 
   ngOnInit() {
@@ -51,6 +57,7 @@ export class HeaderComponent implements OnInit{
         }
       }
     })
+    this.key = this.fb.control('', Validators.required)
   }
 
   handleAuth() {
@@ -63,6 +70,14 @@ export class HeaderComponent implements OnInit{
 
   openLoginDialog() {
     this.dialogRef = this.dialog.open(LoginDialogComponent)
+  }
+
+  searchForUserByKey() {
+    if(this.key.valid) {
+      this.keyService.getUserByKey(this.key.value).subscribe((userId) => {
+        this.router.navigate(["profile", userId])
+      })
+    }
   }
 
   handleSideNav() {

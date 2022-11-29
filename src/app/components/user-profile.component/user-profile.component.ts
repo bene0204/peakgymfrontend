@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {UserEntity} from "../../shared/models/UserEntity";
 import {AuthService} from "../../shared/service/AuthService";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -10,6 +10,8 @@ import {Membership} from "../../shared/models/Membership";
 import {MembershipService} from "../../shared/service/MembershipService";
 import {MembershipStatus} from "../../shared/enums/MembershipStatus";
 import {KeysDialogComponent} from "../dialog/keys-dialog/keys-dialog.component";
+import {KeyService} from "../../shared/service/KeyService";
+import {UserMembershipsComponent} from "../user-memberships/user-memberships.component";
 
 @Component({
   selector: "app-user-profile",
@@ -24,6 +26,7 @@ export class UserProfileComponent implements OnInit{
   recentMemberships: Membership[] = [];
   isAnyActive = false;
   activeMemberships: Membership[] = [];
+  userKey?: string;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -31,7 +34,8 @@ export class UserProfileComponent implements OnInit{
               private userService: UserService,
               private cart: CartService,
               public dialog: MatDialog,
-              private membershipService: MembershipService) {
+              private membershipService: MembershipService,
+              private keyService: KeyService) {
   }
 
   ngOnInit() {
@@ -39,6 +43,7 @@ export class UserProfileComponent implements OnInit{
     this.subToCartItems()
     this.navigateToMemberships()
     this.subToRecentMemberships()
+    this.getUserKey()
   }
 
   get getYears() {
@@ -102,12 +107,45 @@ export class UserProfileComponent implements OnInit{
   }
 
   checkInUser() {
-    this.keysDialogRef = this.dialog.open(KeysDialogComponent)
+    if(!this.userKey) {
+      this.keysDialogRef = this.dialog.open(KeysDialogComponent)
+      this.keysDialogRef.afterClosed().subscribe((key) => {
+        if (key) {
+          this.keyService.checkInUser(key, {
+            membershipId: this.activeMemberships[0].membershipId,
+            userId: this.user!.userId
+          }).subscribe((keys) => {
+            for (const key of keys) {
+              if(key.userId?.userId === this.user?.userId) {
+                this.userKey = key.key
+              }
+            }
+            this.membershipService.rerun();
+          })
+        }
+      })
+
+    } else {
+      this.keyService.checkOutUser(this.userKey).subscribe(() => {
+        this.userKey = undefined;
+      })
+    }
+  }
+
+  getUserKey(){
+    this.keyService.getKeys().subscribe((keys) => {
+      for (const key of keys) {
+        if(key.userId?.userId === this.user?.userId) {
+          this.userKey = key.key
+        }
+      }
+    })
   }
 
   areMembershipsActive() {
     this.activeMemberships = this.recentMemberships.filter(membership =>
-      this.membershipService.isActive(membership) === MembershipStatus.ACTIVE);
+      this.membershipService.isActive(membership) === MembershipStatus.ACTIVE
+      || this.membershipService.isActive(membership) === MembershipStatus.EXPIRING);
       return this.activeMemberships.length > 0;
   }
 

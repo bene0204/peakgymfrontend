@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {KeyService} from "../../../shared/service/KeyService";
 import {KeyEntity} from "../../../shared/models/KeyEntity";
 import {MatDialogRef} from "@angular/material/dialog";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: "app-keys-dialog",
@@ -13,14 +14,30 @@ export class KeysDialogComponent implements OnInit{
   maleKeys: KeyEntity[] = []
   femaleKeys: KeyEntity[] = []
   keys: KeyEntity[] = []
+  keysToDisplay: KeyEntity[] = []
+  sex!: FormControl;
+
+  options = [
+    {value: "male", viewValue: "Férfi kulcsok"},
+    {value: "female", viewValue: "Női kulcsok"},
+  ]
 
   constructor(private keyService: KeyService,
-              public dialogRef: MatDialogRef<KeysDialogComponent>) {
+              public dialogRef: MatDialogRef<KeysDialogComponent>,
+              private fb: FormBuilder) {
   }
 
   ngOnInit() {
+    this.sex = this.fb.control("", Validators.required)
+    this.sex.valueChanges.subscribe(() => {
+      if(this.sex.value === "male"){
+        this.keysToDisplay = this.maleKeys;
+      } else {
+        this.keysToDisplay = this.femaleKeys
+      }
+    })
     this.getKeys();
-
+    this.sex.setValue("male");
   }
 
   getKeys() {

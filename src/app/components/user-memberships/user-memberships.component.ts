@@ -36,6 +36,9 @@ ngOnInit() {
 
 init() {
   this.getUserIdAndRecentMemberships()
+  this.memberhipService.rerunRecentMemberships.subscribe((result) => {
+    if (result) this.getRecentMembershipsByOwner()
+  })
 }
 
 getRecentMembershipsByOwner() {
