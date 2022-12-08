@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from "@angular/core";
+import {Component, EventEmitter, Input, OnInit, Output} from "@angular/core";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {LoginDialogComponent} from "../dialog/login-dialog.component";
 import {AuthService} from "../../shared/service/AuthService";
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit{
   dialogRef!: MatDialogRef<LoginDialogComponent>;
   isLoggedIn = false;
   user?: UserEntity | null;
-  isSideNavOpen = false;
+  @Input() isSideNavOpen = false;
   handSet = false;
   key!: FormControl
   @Output() sidenavopen = new EventEmitter<boolean>();
@@ -85,10 +85,9 @@ export class HeaderComponent implements OnInit{
   handleSideNav() {
     if (!this.isSideNavOpen) {
       this.sidenavopen.emit(true);
-      this.isSideNavOpen = true;
+
     } else {
       this.sidenavopen.emit(false);
-      this.isSideNavOpen = false;
     }
 
   }

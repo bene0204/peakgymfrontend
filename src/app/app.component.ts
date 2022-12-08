@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   dialogRef!: MatDialogRef<GuestFormComponent>;
 
   @ViewChild("sideNav") sideNav?: MatSidenav;
+  isSideNavOpen = false;
 
 
   constructor(private breakPointService: BreakpointService, private authService: AuthService,
@@ -60,8 +61,10 @@ export class AppComponent implements OnInit{
   handleSideNav(shouldOpen: boolean) {
     if (shouldOpen) {
       this.sideNav?.open();
+      this.isSideNavOpen = true
     } else {
       this.sideNav?.close();
+      this.isSideNavOpen = false
     }
   }
 

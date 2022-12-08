@@ -1,0 +1,61 @@
+@import "src/variables";
+.title {
+margin: 20px auto;
+  color: white;
+  background-color: $primary;
+  padding: 20px;
+  border-radius: 12px;
+  border: 3px solid #263ec4;
+  width: fit-content;
+}
+
+.cards {
+  display: grid;
+  grid-template-areas: "gallery gym contact";
+  width: 85%;
+  margin: 40px auto;
+  mat-card{
+    padding: 0;
+    mat-card-title,mat-card-content {
+      padding: 0 10px;
+    }
+    &:hover {
+      transform: scale(110%);
+      cursor: pointer;
+      transition: transform 500ms ease-out ;
+    }
+  }
+  img{
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    margin: 0 0 15px 0;
+  }
+
+  .gym-card{
+    width: 500px;
+    height: 400px;
+    grid-area: gym;
+    img {
+      width: 500px;
+      height: 320px;
+    }
+  }
+  .gallery-card{
+    width: 450px;
+    height: 300px;
+    grid-area: gallery;
+    img {
+      width: 450px;
+      height: 220px;
+    }
+  }
+  .contact-card{
+    width: 450px;
+    height: 300px;
+    grid-area: contact;
+    img {
+      width: 450px;
+      height: 220px;
+    }
+  }
+}

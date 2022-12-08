@@ -1,7 +1,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sideNav position="start">
     <div class="nav-container" (click)="handleSideNav(false)">
-      <div class="management-nav-list" *hasRole="['ADMIN', 'EMPLOYYE']">
+      <div class="management-nav-list" *hasRole="['ADMIN', 'EMPLOYEE']">
         <h3>Menedzsment felületek</h3>
         <mat-nav-list>
 
@@ -13,6 +13,7 @@
             <mat-icon>search</mat-icon>
             <a>Vendég keresése</a>
           </mat-list-item>
+          <div *hasRole="['ADMIN']">
           <mat-list-item routerLink="/membership-management" routerLinkActive="active">
             <mat-icon> monetization_on</mat-icon>
             <a>Bérletek kezelése</a>
@@ -21,6 +22,7 @@
             <mat-icon> monetization_on</mat-icon>
             <a>Termékek kezelése</a>
           </mat-list-item>
+          </div>
         </mat-nav-list>
         <hr>
       </div>
@@ -55,7 +57,7 @@
     </div>
 </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (sidenavopen)="handleSideNav($event)"></app-header>
+    <app-header [isSideNavOpen]="isSideNavOpen" (sidenavopen)="handleSideNav($event)"></app-header>
     <main>
       <router-outlet></router-outlet>
     </main>

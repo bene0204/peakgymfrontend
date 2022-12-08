@@ -1,3 +1,38 @@
 
-<h1>Üdvözöljük a pEakGym oldalán!</h1>
+<h1 class="title">Üdvözöljük a pEakGym oldalán!</h1>
 
+<div class="cards">
+  <mat-card class="gym-card mat-elevation-z6" (click)="navigate('membershiptypes')">
+
+      <img mat-card-image src="assets/gymphoto.jpeg" alt="Gym photo" >
+
+    <mat-card-title>
+      Bérlet árak
+    </mat-card-title>
+    <mat-card-content>
+      Ha még nem voltál nálunk, vagy csak kíváncsi vagy bérlet árainkra kattints ide!
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="gallery-card mat-elevation-z6" (click)="navigate('gallery')">
+
+      <img mat-card-image src="assets/galleryphoto.jpg" alt="Gallery photo">
+
+    <mat-card-title>
+      Galéria
+    </mat-card-title>
+    <mat-card-content>
+      Nézd meg galériánkat!
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="contact-card mat-elevation-z6" (click)="navigate('contact')">
+
+      <img mat-card-image src="assets/contactphoto.jpg" alt="Contact photo">
+
+    <mat-card-title>
+      Kapcsolat
+    </mat-card-title>
+    <mat-card-content>
+      Kérdés, észrevétel esetén lépj velünk kapcsolatba!
+    </mat-card-content>
+  </mat-card>
+</div>
