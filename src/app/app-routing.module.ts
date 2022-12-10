@@ -10,24 +10,29 @@ import {CartComponent} from "./components/cart/cart.component";
 import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
 import {ContactComponent} from "./components/contact/contact.component";
+import {GalleryComponent} from "./components/gallery/gallery.component";
+import {AdminGuard} from "./shared/service/AdminGuard";
+import {ManagementGuard} from "./shared/service/ManagementGuard";
+import {LoginGuard} from "./shared/service/LoginGuard";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", component: HomeComponent},
   {path: "membershiptypes", component: MembershiptypesComponent},
   {path: "contact", component: ContactComponent},
-  {path: "profile/me", component: UserProfileComponent ,
+  {path: "gallery", component: GalleryComponent},
+  {path: "profile/me", component: UserProfileComponent , canActivate: [LoginGuard],
     children: [
-      {path: "memberships", component: UserMembershipsComponent}
+      {path: "memberships", component: UserMembershipsComponent, canActivate: [LoginGuard]}
     ]},
-  {path: "profile/:userId", component:UserProfileComponent,
+  {path: "profile/:userId", component:UserProfileComponent, canActivate: [ManagementGuard],
     children: [
-      {path: "memberships", component: UserMembershipsComponent},
-      {path: "products", component: UserProductsComponent},
-      {path: "cart", component: CartComponent}
+      {path: "memberships", component: UserMembershipsComponent, canActivate: [ManagementGuard]},
+      {path: "products", component: UserProductsComponent, canActivate: [ManagementGuard]},
+      {path: "cart", component: CartComponent, canActivate: [ManagementGuard]}
     ]},
-  {path: "membership-management", component: MembershipManagementComponent},
-  {path: "product-management", component: ProductManagementComponent},
-  {path: "search", component: UserSearchComponent},
+  {path: "membership-management", component: MembershipManagementComponent, canActivate: [AdminGuard]},
+  {path: "product-management", component: ProductManagementComponent, canActivate: [AdminGuard]},
+  {path: "search", component: UserSearchComponent, canActivate: [ManagementGuard]},
   {path: "**", redirectTo: ""}
 
 ];

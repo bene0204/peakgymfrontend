@@ -43,6 +43,7 @@ import {ProductFormComponent} from "./components/product-form/product-form.compo
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {KeysDialogComponent} from "./components/dialog/keys-dialog/keys-dialog.component";
 import {ContactComponent} from "./components/contact/contact.component";
+import {GalleryComponent} from "./components/gallery/gallery.component";
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import {ContactComponent} from "./components/contact/contact.component";
     ProductManagementComponent,
     ProductFormComponent,
     KeysDialogComponent,
-    ContactComponent
+    ContactComponent,
+    GalleryComponent
   ],
     imports: [
         BrowserModule,
