@@ -5,7 +5,6 @@ import {UserMembershipsComponent} from "./components/user-memberships/user-membe
 import {HomeComponent} from "./components/home/home.component";
 import {UserSearchComponent} from "./components/user-search/user-search.component";
 import {UserProductsComponent} from "./components/user-products/user-products.component";
-import {MembershiptypesComponent} from "./components/membershiptypes/membershiptypes.component";
 import {CartComponent} from "./components/cart/cart.component";
 import {MembershipManagementComponent} from "./components/membership-management/membership-management.component";
 import {ProductManagementComponent} from "./components/product-management/product-management.component";
@@ -14,10 +13,11 @@ import {GalleryComponent} from "./components/gallery/gallery.component";
 import {AdminGuard} from "./shared/service/AdminGuard";
 import {ManagementGuard} from "./shared/service/ManagementGuard";
 import {LoginGuard} from "./shared/service/LoginGuard";
+import {MembershipTypesPageComponent} from "./components/memberhiptypespage/membership-types-page.component";
 
 const routes: Routes = [
   {path: "", pathMatch: "full", component: HomeComponent},
-  {path: "membershiptypes", component: MembershiptypesComponent},
+  {path: "membershiptypes", component: MembershipTypesPageComponent},
   {path: "contact", component: ContactComponent},
   {path: "gallery", component: GalleryComponent},
   {path: "profile/me", component: UserProfileComponent , canActivate: [LoginGuard],

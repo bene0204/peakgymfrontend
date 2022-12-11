@@ -8,18 +8,18 @@ export class KeyService {
   }
 
   getKeys() {
-    return this.http.get<KeyEntity[]>("http://localhost:8080/management/api/keys")
+    return this.http.get<KeyEntity[]>("http://3.68.194.175:8080/management/api/keys")
   }
 
   checkInUser(key: string, checkInDTO: {membershipId: string, userId?: string}) {
-    return this.http.patch<KeyEntity[]>(`http://localhost:8080/management/api/keys/checkin/${key}`, checkInDTO);
+    return this.http.patch<KeyEntity[]>(`http://3.68.194.175:8080/management/api/keys/checkin/${key}`, checkInDTO);
   }
 
   checkOutUser(key: string) {
-    return this.http.patch(`http://localhost:8080/management/api/keys/checkout/${key}`, key)
+    return this.http.patch(`http://3.68.194.175:8080/management/api/keys/checkout/${key}`, key)
   }
 
   getUserByKey(key:string) {
-    return this.http.get<{userId : string }>(`http://localhost:8080/management/api/keys/${key}`)
+    return this.http.get<{userId : string }>(`http://3.68.194.175:8080/management/api/keys/${key}`)
   }
 }

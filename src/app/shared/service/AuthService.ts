@@ -17,11 +17,11 @@ export class AuthService {
   }
 
   loginUser(userLogin: LoginDTO) {
-    return this.http.post<LoginResponse>("http://localhost:8080/public/api/login", userLogin)
+    return this.http.post<LoginResponse>("http://3.68.194.175:8080/public/api/login", userLogin)
   }
 
   autoLogin() {
-    return this.http.get<UserEntity>("http://localhost:8080/public/api/autologin")
+    return this.http.get<UserEntity>("http://3.68.194.175:8080/public/api/autologin")
   }
 
   logout() {

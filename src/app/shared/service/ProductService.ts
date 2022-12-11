@@ -9,7 +9,7 @@ export class ProductService{
   }
 
   getProductTypes(name: string){
-    return this.http.get<ProductType[]>("http://localhost:8080/management/api/producttype/list", {
+    return this.http.get<ProductType[]>("http://3.68.194.175:8080/management/api/producttype/list", {
       params: {
         ["name"] : name,
       }
@@ -17,14 +17,14 @@ export class ProductService{
   }
 
   saveProduct(body: ProductType) {
-    return this.http.post<ProductType>("http://localhost:8080/admin/api/producttype/add", body);
+    return this.http.post<ProductType>("http://3.68.194.175:8080/admin/api/producttype/add", body);
   }
 
   updateProduct(typeId: string, body: ProductType) {
-    return this.http.patch<ProductType>(`http://localhost:8080/admin/api/producttype/update/${typeId}`, body);
+    return this.http.patch<ProductType>(`http://3.68.194.175:8080/admin/api/producttype/update/${typeId}`, body);
   }
 
   deleteProduct(typeId: string) {
-    return this.http.delete(`http://localhost:8080/admin/api/producttype/delete/${typeId}`);
+    return this.http.delete(`http://3.68.194.175:8080/admin/api/producttype/delete/${typeId}`);
   }
 }

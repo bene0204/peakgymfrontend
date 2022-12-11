@@ -44,6 +44,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {KeysDialogComponent} from "./components/dialog/keys-dialog/keys-dialog.component";
 import {ContactComponent} from "./components/contact/contact.component";
 import {GalleryComponent} from "./components/gallery/gallery.component";
+import {MembershipTypesPageComponent} from "./components/memberhiptypespage/membership-types-page.component";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {GalleryComponent} from "./components/gallery/gallery.component";
     ProductFormComponent,
     KeysDialogComponent,
     ContactComponent,
-    GalleryComponent
+    GalleryComponent,
+    MembershipTypesPageComponent
   ],
     imports: [
         BrowserModule,

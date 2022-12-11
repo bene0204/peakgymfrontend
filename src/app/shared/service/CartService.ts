@@ -80,7 +80,7 @@ export class CartService {
         paymentMethod: paymentMethod
       }
     })
-    this.http.post(`http://localhost:8080/management/api/membership/sell/${userId}`, body).subscribe({
+    this.http.post(`http://3.68.194.175:8080/management/api/membership/sell/${userId}`, body).subscribe({
       next: () => {
         this.itemsInMembershipCart = []
         this.emitItemNumber()
@@ -97,7 +97,7 @@ export class CartService {
         paymentMethod: paymentMethod
       }
     })
-    this.http.post(`http://localhost:8080/management/api/product/sell/${userId}`, body).subscribe({
+    this.http.post(`http://3.68.194.175:8080/management/api/product/sell/${userId}`, body).subscribe({
       next: () => {
         this.itemsInProductCart = []
         this.emitItemNumber()
